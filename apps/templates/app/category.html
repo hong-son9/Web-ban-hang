@@ -1,0 +1,31 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+        {% block register %}
+
+        <br/>
+        <div class="row" style="width:100%">
+  {% for product in products %}
+      <div class="col-lg-3">
+        <img class="thubnail" src="{{product.ImageURL}}" height="200">
+        <div class="box-element product">
+          <h6><strong>{{product.name}}</strong></h6>
+          <hr>
+          <buttom data-product={{product.id}} data-action ="add" class="btn  btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</buttom>
+          <a class="btn btn-outline-success" href="#">Xem</a>
+          <h4 style="display: inline-block; float: right"><strong>{{product.price}}</strong></h4>
+      </div>
+    </div>
+
+  {% endfor %}
+</div>
+        {% endblock register %}
+</body>
+</html>

@@ -1,0 +1,105 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block cart_content %}
+<script type="text/javascript">
+  // Đường dẫn tới trang checkout
+  var checkoutUrl = "{% url 'checkout' %}";
+
+  // Các dòng mã JavaScript khác...
+</script>
+</style>
+<div class="row" style= 'width:100%'>
+	<div class="col-lg-12">
+		<div class="box-element">
+
+			<a  class="btn btn-outline-dark" href="{% url 'home' %}">&#x2190; Continue Shopping</a>
+
+			<br>
+			<br>
+			<table class="table">
+				<tr>
+					<th><h5>Items: <strong>{{order.get_cart_items}}</strong></h5></th>
+					<th><h5>Total:<strong>{{order.get_cart_total}}</strong></h5></th>
+					<th>
+						<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+					</th>
+				</tr>
+			</table>
+
+		</div>
+
+		<br>
+		<div class="box-element">
+			<div class="cart-row">
+				<div style="flex:2"></div>
+				<div style="flex:2"><strong>Item</strong></div>
+				<div style="flex:1"><strong>Price</strong></div>
+				<div style="flex:1"><strong>Quantity</strong></div>
+				<div style="flex:1"><strong>Total</strong></div>
+				<div style="flex:1"><strong>Select product</strong></div>
+
+
+
+			</div>
+			{% for item in items %}
+
+			<div class="cart-row">
+				<div style="flex:2"><img class="row-image" src="{{item.product.ImageURL}}"></div>
+				<div style="flex:2"><p>{{item.product.name}}</p></div>
+				<div style="flex:1"><p>{{item.product.price}}</p></div>
+				<div style="flex:1">
+					<p class="quantity">{{item.quantity}}</p>
+					<div class="quantity">
+						<img data-product="{{item.product.id}}" data-action='add'  class="chg-quantity update-cart" src="{% static  'app/images/arrow-up.png' %}">
+
+						<img data-product="{{item.product.id}}" data-action='remove' class="chg-quantity update-cart"  src="{% static  'app/images/arrow-down.png' %}">
+					</div>
+				</div>
+				<div style="flex:1"><p>{{item.get_total}}</p></div>
+				<div style="flex:1">
+				<input type="checkbox" style="margin-left: 40px" class="product-checkbox" data-product-id="{{item.product.id}}">
+			  	</div>
+
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+<!-- Thêm nút "Checkout" -->
+<div class="checkout-button" style="text-align: right">
+	<a style=" margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+</div>
+<!-- JavaScript -->
+<script type="text/javascript">
+  var productCheckboxes = document.querySelectorAll('.product-checkbox');
+
+  // Lưu trữ các sản phẩm được chọn
+  var selectedProducts = [];
+
+  // Thêm sự kiện click cho mỗi ô tích sản phẩm
+  productCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('click', function() {
+      var productId = this.dataset.productId;
+
+      // Kiểm tra xem ô tích có được chọn hay không
+      if (this.checked) {
+        // Nếu ô tích được chọn, thêm sản phẩm vào danh sách các sản phẩm được chọn
+        selectedProducts.push(productId);
+      } else {
+        // Nếu ô tích bị bỏ chọn, loại bỏ sản phẩm khỏi danh sách các sản phẩm được chọn
+        var index = selectedProducts.indexOf(productId);
+        if (index !== -1) {
+          selectedProducts.splice(index, 1);
+        }
+      }
+    });
+  });
+
+  // Thêm sự kiện click cho nút "Checkout"
+  document.getElementById('checkout-btn').addEventListener('click', function() {
+    // Chuyển hướng đến trang Checkout và truyền danh sách các sản phẩm được chọn
+    window.location.href = checkoutUrl;
+  });
+</script>
+{% endblock cart_content %}

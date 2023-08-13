@@ -279,27 +279,8 @@ def hotline(request):
         }
         return render(request, 'app/hotline.html', context)
 def forgetpass(request):
-        if request.user.is_authenticated:
-                customer = request.user
-                #Lấy và tạo order
-                order, created = Order.objects.get_or_create(customer=customer, complete=False)
-                #Truy cập all đơn hàng đã đặt
-                items = order.orderitem_set.all()
-                cartItems = order.get_cart_items
-                user_not_login = "hidden"
-                user_login = "show"
-        else:
-                items = []
-                order = {'get_cart_items': 0, 'get_cart_total': 0}
-                cartItems = order['get_cart_items']
-                #Ân đăng nhập và đăng kí
-                user_not_login = "show"
-                user_login = "hidden"
         context = {
-                'items': items,
-                'order': order,
-                'cartItems': cartItems,
-                'user_not_login': user_not_login,
-                'user_login': user_login,
+                'user_not_login': 'show',
+                'user_login': 'hidden',
         }
         return render(request, 'app/forget-password.html', context)

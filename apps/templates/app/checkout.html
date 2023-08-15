@@ -19,7 +19,9 @@
     background-color: red;
     color: white;
 }
-
+#btn-success:hover{
+    background-color: red;
+    }
 
 
 </style>
@@ -113,7 +115,7 @@
                             </div>
                         </div>
                         <hr class="mb-4">
-                        <button class="btn btn-primary btn-lg btn-block" style="background-color:red;" type="submit" id="btnDatHang" name="btnDatHang">Đặt
+                        <button class="btn btn-primary btn-lg btn-block" id="btn-success" style="background-color:198754;" type="submit" id="btnDatHang" name="btnDatHang">Đặt
                             hàng</button>
                     </div>
                 </div>
@@ -232,7 +234,6 @@
 <script>
     document.getElementById("btnDatHang").addEventListener("click", function(event) {
         event.preventDefault(); // Ngăn chặn gửi form mặc định
-
         // Kiểm tra các trường thông tin nhận hàng
         var name = document.querySelector('input[name="name"]').value;
         var address = document.querySelector('input[name="address"]').value;
@@ -248,7 +249,6 @@
             alert("Vui lòng nhập đầy đủ thông tin nhận hàng trước khi đặt hàng.");
         }
     });
-
     // Hàm kiểm tra phương thức thanh toán và hiển thị giao diện tương ứng
     function showPaymentForm() {
         // Lấy giá trị của phương thức thanh toán được chọn
@@ -274,12 +274,10 @@
         var overlay = document.querySelector(".overlay");
         overlay.style.display = "flex";
     }
-
     // Hàm ẩn thông báo đặt hàng thành công
     function hideSuccessMessage() {
         var overlay = document.querySelector(".overlay");
         overlay.style.display = "none";
     }
 </script>
-
 {% endblock content_checkout %}

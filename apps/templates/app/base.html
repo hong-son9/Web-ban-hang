@@ -37,7 +37,6 @@
 }
 const csrftoken = getCookie('csrftoken');
     </script>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Bán Sữa Need Online</title>
 </head>
@@ -51,7 +50,6 @@ const csrftoken = getCookie('csrftoken');
     background-color: #F7462E;
     color: white;
   }
-
   body {
     padding-top: 80px; /* Đặt giá trị phù hợp với chiều cao của header (80px là ví dụ) */
   }
@@ -59,11 +57,9 @@ const csrftoken = getCookie('csrftoken');
 .navbar-brand {
   transition: transform 0.3s ease;
 }
-
 .navbar-brand:hover {
   transform: scale(1.2);
 }
-
   </style>
 <body>
     <!--Header-->
@@ -87,7 +83,7 @@ const csrftoken = getCookie('csrftoken');
           <ul class="dropdown-menu">
               {% for category in categories %}
             <li><a class="dropdown-item" href="{% url 'category' %}?category={{category.slug}}">{{category.name}}</a></li>
-                {% endfor %}
+              {% endfor %}
           </ul>
         </li>
           <li class="nav-item">

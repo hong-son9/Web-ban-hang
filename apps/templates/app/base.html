@@ -102,15 +102,10 @@ const csrftoken = getCookie('csrftoken');
       <div style="margin-left: 15px; visibility:{{user_login}};">
         Hello {{request.user}}
       </div>
-
       <div style="margin-right: 10px; visibility:{{user_login}};">
         <a style="margin-left: 10px; text-decoration: none; color: white;" href="{% url 'logout' %}">Đăng xuất</a>
       </div>
-
 </div>
-
-
-
       <div class="form-inline my-2 my-lg-0" style="visibility:{{user_not_login}}">
           <a class="nav-link" style="color: white" href="{% url 'login' %}">Đăng Nhập</a>
           <a class="nav-link" style="color: white" href="{% url 'register' %}">Đăng kí</a>
@@ -151,9 +146,6 @@ const csrftoken = getCookie('csrftoken');
     display: inline-block;
   }
 </style>
-
-
-
 </div>
   </div>
 </nav>
@@ -180,45 +172,59 @@ const csrftoken = getCookie('csrftoken');
     <!-- Section: Social media -->
     <section class="mb-4">
       <!-- Facebook -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/hongson.phi.7" role="button"
-        ><i class="fab fa-facebook-f"></i
-      ></a>
-
+      <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;" href="https://www.facebook.com/hongson.phi.7" role="button"
+        ><i class="fab fa-facebook-f"></i></a>
       <!-- Youtube -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://www.youtube.com/channel/UC76VDqq9Dz_VApBJHG9Zdmg" role="button"
-        ><i class="fab fa-youtube"></i
-      ></a>
-
+      <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;" href="https://www.youtube.com/channel/UC76VDqq9Dz_VApBJHG9Zdmg" role="button"
+        ><i class="fab fa-youtube"></i></a>
+        <!-- Message -->
+      <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;" href="https://www.messenger.com/t/100016363180729" role="button"
+        ><i class="fab fa-facebook-messenger"></i></a>
       <!-- Google -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://www.google.com.vn/?hl=vi" role="button"
-        ><i class="fab fa-google"></i
-      ></a>
-
+      <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;" href="https://www.google.com.vn/?hl=vi" role="button"
+        ><i class="fab fa-google"></i></a>
       <!-- Instagram -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/hongsonphi/" role="button"
-        ><i class="fab fa-instagram"></i
-      ></a>
-
-      <!-- Message -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://www.messenger.com/t/1902982963108557" role="button"
-        ><i class="fab fa-facebook-messenger"></i
-      ></a>
-
+      <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;" href="https://www.instagram.com/hongsonphi/" role="button"
+        ><i class="fab fa-instagram"></i></a>
       <!-- Github -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/hong-son9" role="button"
-        ><i class="fab fa-github"></i
-      ></a>
+      <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;" href="https://github.com/hong-son9" role="button"
+        ><i class="fab fa-github"></i></a>
+        <!-- Zalo -->
+        <button onclick="show()" id="btnID" type="button" class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;">
+        <img src="{% static 'images/zalo3.png' %}" class="d-block w-100" style="width: 20px; height: 25px;" alt="Zalo">
+    </button>
+
+    <div id="image-popup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); justify-content: center; align-items: center;">
+        <div style="position: relative;">
+            <img id="image" src="" style="max-width: 60%; max-height: 60vh;">
+            <button id="close-popup" style="position: absolute; top: 10px; right: 20px; font-size: 40px; background: none; border: none; color: white;">&times;</button>
+        </div>
+    </div>
+<!-- Xử lí tắt ảnh -->
+    <script>
+        const popupTrigger = document.getElementById('btnID');
+        const popupImage = document.getElementById('image');
+        const imagePopup = document.getElementById('image-popup');
+        const closePopup = document.getElementById('close-popup');
+
+        popupTrigger.addEventListener('click', function() {
+            const originalImageSrc = "{% static 'images/qr_zalo.jpg' %}";
+            popupImage.src = originalImageSrc;
+            imagePopup.style.display = 'flex';
+        });
+
+        closePopup.addEventListener('click', function() {
+            imagePopup.style.display = 'none';
+        });
+    </script>
+
     </section>
     <!-- Section: Social media -->
   </div>
   <!-- Grid container -->
-
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-
-    <a>Milk provides protein, calcium, vitamin D.
-        Calcium is needed to build and maintain strong bones, vitamin D helps the body absorb calcium from food.
-        Therefore, milk is a food that helps improve bone density, reducing the risk of fractures in the elderly.</a>
+    <a>Milk provides protein, calcium, vitamin D. Calcium is needed to build and maintain strong bones, vitamin D helps the body absorb calcium from food. Therefore, milk is a food that helps improve bone density, reducing the risk of fractures in the elderly.</a>
   </div>
   <!-- Copyright -->
 <section class="">
@@ -232,8 +238,6 @@ const csrftoken = getCookie('csrftoken');
             </p>
           </div>
           <!--Grid column-->
-
-          <!--Grid column-->
           <div class="col-md-5 col-12">
             <!-- Email input -->
             <div class="form-outline form-white mb-4">
@@ -242,11 +246,9 @@ const csrftoken = getCookie('csrftoken');
             </div>
           </div>
           <!--Grid column-->
-
-          <!--Grid column-->
           <div class="col-auto">
             <!-- Submit button -->
-            <button type="submit" class="btn btn-outline-light mb-4">
+            <button type="submit" style="border-radius: 5px;" class="btn btn-outline-light mb-4">
               Subscribe
             </button>
           </div>
@@ -256,7 +258,33 @@ const csrftoken = getCookie('csrftoken');
       </form>
     </section>
          <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        <a>Liên hệ 0365454643 (Phí Hồng Sơn)</a>
+       <style>
+      .marquee {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-text1 {
+    display: inline-block;
+    font-size: 20px; /* Đổi giá trị font-size tại đây */
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    animation: marquee 10s linear infinite; /* Điều chỉnh thời gian và animation theo ý muốn */
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%); /* Bắt đầu từ phải cùng */
+    }
+    100% {
+        transform: translateX(-100%); /* Kết thúc ở bên trái */
+    }
+}
+       </style>
+             <div class="marquee">
+                 <a class="marquee-text1">Liên hệ: 0365454643 (Phí Hồng Sơn)</a>
+             </div>
   </div>
 <!-- Footer -->
         </footer>

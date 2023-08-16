@@ -30,19 +30,18 @@ body {
 }
 .call-btn {
     display: inline-block;
-    background-color: #0056b3;
-    color: #fff;
-    text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 5px;
-    margin-top: 20px;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
     justify-content: center;
+    border: 2px solid red;
+    padding: 10px 20px;
+    color: red;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color:white;
 }
 .call-btn:hover {
     background-color: red;
+    color: white;
 }
 </style>
 <body>
@@ -50,7 +49,7 @@ body {
     <div class="marquee">
     <p class="marquee-text">Hotline hỗ trợ: 036-545-4643(Phí Hồng Sơn) - Giờ làm việc: Thứ 2 - Thứ 6, 8:00 AM - 5:00 PM</p>
     </div>
-        <a href="tel:0365454643" class="call-btn">Gọi ngay</a>
+        <a href="tel:0365454643" class="call-btn">&#x2190; Gọi ngay</a>
         {% endblock hotline %}
 </body>
 

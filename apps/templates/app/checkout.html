@@ -3,7 +3,6 @@
 {% block content_checkout %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <style>
     .btn-outline-dark  {
@@ -14,15 +13,23 @@
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 .btn-outline-dark:hover {
     background-color: red;
     color: white;
 }
-#btn-success:hover{
+#btnDatHang{
+    border: 2px solid red;
+    padding: 10px 20px;
+    color: red;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color:white;
+}
+#btnDatHang:hover{
     background-color: red;
+    color:white;
     }
-
 
 </style>
      <main role="main">
@@ -31,7 +38,6 @@
             <form class="needs-validation" name="formthanhtoan" method="post"
                 action="#">
                 <input type="hidden" name="kh_tendangnhap" value="dnpcuong">
-
                 <div class="py-5 text-center">
                     <i class="fa fa-credit-card fa-4x" aria-hidden="true"></i>
                     <h2>Thanh toán</h2>
@@ -41,7 +47,7 @@
                 <div class="row">
                     <div class="col-md-5 order-md-2 mb-4">
                         <h4 class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="text-muted">Giỏ hàng</span>
+                            <span class="text-muted" style="font-weight: bold;">Giỏ hàng</span>
                             <span class="badge badge-secondary badge-pill">{{order.get_cart_items}}</span>
                         </h4>
                         <ul class="list-group mb-3">
@@ -67,20 +73,17 @@
                                 <span>Tổng thành tiền</span>
                                 <strong>{{order.get_cart_total}}</strong>
                             </li>
+                            </div>
                         </ul>
-
-
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Mã khuyến mãi">
                             <div class="input-group-append">
-                                <button type="submit" class="btn btn-secondary">Xác nhận</button>
+                                <button type="submit" class="btn btn-secondary" id="btn-xn">Xác nhận</button>
                             </div>
                         </div>
-
                     </div>
                     <div class="col-md-7 order-md-1">
                         <h4 class="mb-3">Thông tin khách hàng</h4>
-
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="kh_ten">Họ tên</label>
@@ -115,17 +118,15 @@
                             </div>
                         </div>
                         <hr class="mb-4">
-                        <button class="btn btn-primary btn-lg btn-block" id="btn-success" style="background-color:198754;" type="submit" id="btnDatHang" name="btnDatHang">Đặt
+                        <button class="btn btn-primary btn-lg btn-block" type="submit" id="btnDatHang" name="btnDatHang">&#x2190; Đặt
                             hàng</button>
                     </div>
                 </div>
             </form>
-
         </div>
         <!-- End block content -->
     </main>
 <style>
-
   /* ... */
 
   /* Tạo lớp overlay */
@@ -205,7 +206,19 @@
   #pay-with-card-btn:hover {
     background-color: #0056b3;
   }
-  /* ... */
+#pay-with-card-btn{
+    border: 2px solid red;
+    padding: 10px 20px;
+    color: red;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color:white;
+}
+#pay-with-card-btn:hover{
+    background-color: red;
+    color:white;
+    }
 </style>
 
 <div class="overlay">
@@ -229,7 +242,7 @@
     <label for="pin">Mã PIN:</label>
     <input type="password" class="form-control" id="pin" required>
   </div>
-  <button style="background-color:red;" onclick="showSuccessMessage()" class="btn btn-primary" id="pay-with-card-btn">Thanh toán bằng thẻ ngân hàng</button>
+  <button onclick="showSuccessMessage()" class="btn btn-primary btn-lg btn-block" id="pay-with-card-btn">&#x2190; Thanh toán bằng thẻ ngân hàng</button>
 </div>
 <script>
     document.getElementById("btnDatHang").addEventListener("click", function(event) {

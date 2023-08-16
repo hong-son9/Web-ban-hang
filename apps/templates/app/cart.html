@@ -14,16 +14,20 @@
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 .btn-outline-dark:hover {
     background-color: red;
     color: white;
 }
+#checkout-btn{
+	border: 2px solid red;
+	text-decoration: none;
+	color: red;
+	background-color:white;
+	transition: background-color 0.3s ease, color 0.3s ease;
+	}
 #checkout-btn:hover {
     background-color: red;
-}
-#checkout-btn1:hover {
-    background-color: red;
+    color: white;
 }
 </style>
 <div class="row" style= 'width:100%'>
@@ -37,13 +41,11 @@
 					<th><h5>Tên sản phẩm: <strong>{{order.get_cart_items}}</strong></h5></th>
 					<th><h5>Tổng:<strong>{{order.get_cart_total}}</strong></h5></th>
 					<th>
-						<a style="float:right; margin:5px;" id="checkout-btn" class="btn btn-success" href="{% url 'checkout' %}">Thanh Toán</a>
+						<a style="float:right; margin:5px; border-radius: 10px;" id="checkout-btn" class="btn btn-success" href="{% url 'checkout' %}">&#x2190; Thanh Toán</a>
 					</th>
 				</tr>
 			</table>
-
 		</div>
-
 		<br>
 		<div class="box-element">
 			<div class="cart-row">
@@ -63,7 +65,6 @@
 					<p class="quantity">{{item.quantity}}</p>
 					<div class="quantity">
 						<img data-product="{{item.product.id}}" data-action='add'  class="chg-quantity update-cart" src="{% static  'app/images/arrow-up.png' %}">
-
 						<img data-product="{{item.product.id}}" data-action='remove' class="chg-quantity update-cart"  src="{% static  'app/images/arrow-down.png' %}">
 					</div>
 				</div>
@@ -75,10 +76,6 @@
 			{% endfor %}
 		</div>
 	</div>
-</div>
-<!-- Thêm nút "Checkout" -->
-<div class="checkout-button" style="text-align: right">
-	<a style=" margin:5px;" class="btn btn-success" id="checkout-btn1" href="{% url 'checkout' %}">Thanh Toán</a>
 </div>
 <!-- JavaScript -->
 <script type="text/javascript">

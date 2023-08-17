@@ -26,6 +26,7 @@
 	transition: background-color 0.3s ease, color 0.3s ease;
 	}
 #checkout-btn:hover {
+	border: 2px solid black;
     background-color: red;
     color: white;
 }
@@ -39,7 +40,7 @@
 			<table class="table">
 				<tr>
 					<th><h5>Tên sản phẩm: <strong>{{order.get_cart_items}}</strong></h5></th>
-					<th><h5>Tổng:<strong>{{order.get_cart_total}}</strong></h5></th>
+					<th><h5>Tổng: <strong>{{order.get_cart_total}}</strong></h5></th>
 					<th>
 						<a style="float:right; margin:5px; border-radius: 10px;" id="checkout-btn" class="btn btn-success" href="{% url 'checkout' %}">&#x2190; Thanh Toán</a>
 					</th>

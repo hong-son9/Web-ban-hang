@@ -33,7 +33,7 @@ def login_account(request):
                         login(request, user)
                         return redirect('home')
                 else:
-                        messages.info(request, 'User or password not correct')
+                        messages.info(request, 'Tài khoản hoặc mật khẩu không chính xác!!!')
         context = {
                 'user_login': 'hidden'
         }
@@ -112,11 +112,11 @@ def checkout(request):
                 user_not_login = "hidden"
                 user_login = "show"
             #Check ô chọn sản phẩm
-        if request.method == 'GET':
-                selected_product_ids = request.GET.getlist('selectedProducts')
-                selected_products = OrderItem.objects.filter(product__id__in=selected_product_ids)
+        #if request.method == 'GET':
+        #        selected_product_ids = request.GET.getlist('selectedProducts')
+        #        selected_products = OrderItem.objects.filter(product__id__in=selected_product_ids)
                 # Tính tổng giá tiền của các sản phẩm được chọn
-                total_price = sum(item.get_total for item in selected_products)
+         #       total_price = sum(item.get_total for item in selected_products)
 
         else:
                 items = []

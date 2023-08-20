@@ -7,6 +7,7 @@ for(i=0; i<updateBtns.length;i++){
         var action = this.dataset.action
         console.log('productId', productId, 'action', action);
         console.log('user:', user)
+        //test chức năng đăng nhập
         if (user ==="AnonymousUser"){
             console.log('user not logged')
         }

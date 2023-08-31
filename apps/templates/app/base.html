@@ -42,26 +42,72 @@ const csrftoken = getCookie('csrftoken');
 </head>
 <style>
   .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        background-color: #F7462E;
+        color: white;
 
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 9999;
-    background-color: #F7462E;
-    color: white;
   }
   body {
-
-    padding-top: 80px; /* Đặt giá trị phù hợp với chiều cao của header (80px là ví dụ) */
+       /* width: 1800px;
+        max-width:  calc(100% - 48px);
+        margin: 0 auto;*/
+        padding-top: 80px; /* Đặt giá trị phù hợp với chiều cao của header (80px là ví dụ) */
   }
     /* CSS để thêm hiệu ứng phóng to vào ảnh */
-.navbar-brand {
-  transition: transform 0.3s ease;
-}
-.navbar-brand:hover {
-  transform: scale(1.2);
-}
+  .navbar-brand {
+      transition: transform 0.3s ease;
+  }
+  .navbar-brand:hover {
+    transform: scale(1.2);
+  }
+  .cart-items-badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        font-weight: bold;
+  }
+  .cart-items-count {
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        padding: 5px;
+        font-size: 12px;
+        display: inline-block;
+  }
+  .marquee {
+        overflow: hidden;
+        white-space: nowrap;
+  }
+
+  .marquee-text1 {
+        display: inline-block;
+        font-size: 20px; /* Đổi giá trị font-size tại đây */
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+        animation: marquee 10s linear infinite; /* Điều chỉnh thời gian và animation theo ý muốn */
+  }
+  @keyframes marquee {
+    0% {
+        transform: translateX(100%); /* Bắt đầu từ phải cùng */
+    }
+    100% {
+        transform: translateX(-100%); /* Kết thúc ở bên trái */
+    }
+  }
   </style>
 <body>
     <!--Header-->
@@ -122,32 +168,6 @@ const csrftoken = getCookie('csrftoken');
     </div>
   </a>
 </div>
-
-<style>
-  .cart-items-badge {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 20px;
-    height: 20px;
-    background-color: red;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    font-weight: bold;
-  }
-  .cart-items-count {
-    background-color: red;
-    color: white;
-    border-radius: 50%;
-    padding: 5px;
-    font-size: 12px;
-    display: inline-block;
-  }
-</style>
 </div>
   </div>
 </nav>
@@ -159,16 +179,22 @@ const csrftoken = getCookie('csrftoken');
     {% block detail %} {% endblock detail %}
     <!--Giao dien cart-->
     {% block cart_content %} {% endblock cart_content %}
+    <!--Giao dien category-->
+    {% block category %} {% endblock category %}
     <!--Giao dien checkout-->
     {% block content_checkout %} {% endblock content_checkout %}
     <!--Giao diện register-->
     {% block register %} {% endblock register %}
+    <!-- Giao diện search -->
+     {% block search %}  {% endblock search %}
     <!--Giao diện forgetpassword -->
     {% block forgetpass %} {% endblock forgetpass %}
     <!--Giao diện hotline-->
     {% block hotline %} {% endblock hotline %}
     <!-- Giao diện thanh toán -->
     {% block pay %} {% endblock pay %}
+    <!-- Giao diện sidebar -->
+    {% block sidebar %} {% endblock sidebar %}
     <!-- Footer -->
     <footer style="background-color: #011C3A;"class="text-center text-white">
   <!-- Grid container -->
@@ -262,30 +288,7 @@ const csrftoken = getCookie('csrftoken');
       </form>
     </section>
          <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-       <style>
-      .marquee {
-    overflow: hidden;
-    white-space: nowrap;
-}
 
-.marquee-text1 {
-    display: inline-block;
-    font-size: 20px; /* Đổi giá trị font-size tại đây */
-    font-weight: bold;
-    text-decoration: none;
-    color: white;
-    animation: marquee 10s linear infinite; /* Điều chỉnh thời gian và animation theo ý muốn */
-}
-
-@keyframes marquee {
-    0% {
-        transform: translateX(100%); /* Bắt đầu từ phải cùng */
-    }
-    100% {
-        transform: translateX(-100%); /* Kết thúc ở bên trái */
-    }
-}
-       </style>
              <div class="marquee">
                  <a class="marquee-text1">Liên hệ: 0365454643 (Phí Hồng Sơn)</a>
              </div>

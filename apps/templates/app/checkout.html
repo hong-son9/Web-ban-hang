@@ -6,32 +6,113 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <style>
     .btn-outline-dark  {
-    border: 2px solid red;
-    padding: 10px 20px;
-    color: red;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-.btn-outline-dark:hover {
-    background-color: red;
-    color: white;
-}
-#btnDatHang{
-    border: 2px solid red;
-    padding: 10px 20px;
-    color: red;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    background-color:white;
-}
-#btnDatHang:hover{
-    border: 2px solid black;
-    background-color: red;
-    color:white;
+        border: 2px solid red;
+        padding: 10px 20px;
+        color: red;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .btn-outline-dark:hover {
+        background-color: red;
+        color: white;
+    }
+    #btnDatHang{
+        border: 2px solid red;
+        padding: 10px 20px;
+        color: red;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        background-color:white;
+    }
+    #btnDatHang:hover{
+        border: 2px solid black;
+        background-color: red;
+        color:white;
+    }
+    /* Tạo lớp overlay */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
     }
 
+  /* Căn giữa thông báo */
+    .centered-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+     .checkmark-icon {
+        color: #28a745;
+        font-size: 50px;
+        margin: 0 auto;
+        display: block;
+     }
+
+      /* Nút OK */
+      .btn-ok {
+        float: right;
+        background-color: red;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 15px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 20px;
+     }
+
+     .btn-ok:hover {
+        background-color: #218838;
+     }
+     .payment-method {
+        margin-top: 20px;
+     }
+
+     .payment-method h4 {
+        margin-bottom: 10px;
+     }
+
+     .form-group {
+        margin-bottom: 15px;
+     }
+
+     .form-group label {
+        display: block;
+        font-weight: bold;
+     }
+
+     .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+     }
+
+      /* CSS cho nút "Thanh toán bằng thẻ ngân hàng" */
+     #pay-with-card-btn {
+        border: 2px solid red;
+        color: red;
+        text-decoration: none;
+        border-radius: 5px;
+        background-color: white;
+        transition: background-color 0.3s ease, color 0.3s ease;
+     }
+     #pay-with-card-btn:hover {
+        border: 2px solid black;
+        background-color: red;
+        color:white;
+     }
 </style>
      <main role="main">
         <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
@@ -44,7 +125,7 @@
                     <h2>Thanh toán</h2>
                     <p class="lead">Vui lòng kiểm tra thông tin Khách hàng, thông tin Giỏ hàng trước khi Đặt hàng.</p>
                 </div>
-        <a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Giỏ Hàng</a>
+        <a class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Giỏ Hàng</a>
                 <div class="row">
                     <div class="col-md-5 order-md-2 mb-4">
                         <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -103,9 +184,7 @@
                                 <input required class="form-control" type="text" name="email" placeholder="Email..">
                             </div>
                         </div>
-
                         <h4 class="mb-3">Hình thức thanh toán</h4>
-
                         <div class="d-block my-3">
                             <div class="custom-control custom-radio">
                                 <input id="httt-1" name="httt_ma" type="radio" class="custom-control-input" required=""
@@ -124,119 +203,37 @@
                     </div>
                 </div>
             </form>
+
+         <div id="payment-form" style="display: none;" class="col-md-7 order-md-1">
+      <h4>Nhập thông tin Ngân Hàng của bạn</h4>
+      <div class="form-group">
+        <label for="bank-name">Tên ngân hàng:</label>
+        <input type="text" class="form-control" id="bank-name" required>
+      </div>
+      <div class="form-group">
+        <label for="account-number">Số tài khoản:</label>
+        <input type="text" class="form-control" id="account-number" required>
+      </div>
+      <div class="form-group">
+        <label for="pin">Mã PIN:</label>
+        <input type="password" class="form-control" id="pin" required>
+      </div>
+      <button onclick="showSuccessMessage()" class="btn btn-primary btn-lg btn-block" id="pay-with-card-btn">&#x2190; Thanh toán bằng thẻ ngân hàng</button>
+    </div>
         </div>
         <!-- End block content -->
     </main>
-<style>
-  /* ... */
 
-  /* Tạo lớp overlay */
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
 
-  /* Căn giữa thông báo */
-  .centered-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
- .checkmark-icon {
-    color: #28a745;
-    font-size: 50px;
-    margin: 0 auto;
-    display: block;
-  }
 
-  /* Nút OK */
-  .btn-ok {
-    float: right;
-    background-color: red;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 15px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-top: 20px;
-  }
+    <div class="overlay">
+      <div class="centered-container">
+        <i class="fas fa-check-circle checkmark-icon"></i>
+        <p class="success-message">Đặt hàng thành công! Cảm ơn bạn đã mua hàng.</p>
+        <button class="btn btn-ok" onclick="hideSuccessMessage()">OK</button>
+      </div>
+    </div>
 
-  .btn-ok:hover {
-    background-color: #218838;
-  }
-  .payment-method {
-    margin-top: 20px;
-  }
-
-  .payment-method h4 {
-    margin-bottom: 10px;
-  }
-
-  .form-group {
-    margin-bottom: 15px;
-  }
-
-  .form-group label {
-    display: block;
-    font-weight: bold;
-  }
-
-  .form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-
-  /* CSS cho nút "Thanh toán bằng thẻ ngân hàng" */
-  #pay-with-card-btn {
-    border: 2px solid red;
-    color: red;
-    text-decoration: none;
-    border-radius: 5px;
-    background-color: white;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  #pay-with-card-btn:hover {
-    border: 2px solid black;
-    background-color: red;
-    color:white;
-  }
-</style>
-
-<div class="overlay">
-  <div class="centered-container">
-    <i class="fas fa-check-circle checkmark-icon"></i>
-    <p class="success-message">Đặt hàng thành công! Cảm ơn bạn đã mua hàng.</p>
-    <button class="btn btn-ok" onclick="hideSuccessMessage()">OK</button>
-  </div>
-</div>
-<div id="payment-form" style="display: none;">
-  <h4>Nhập thông tin Ngân Hàng</h4>
-  <div class="form-group">
-    <label for="bank-name">Tên ngân hàng:</label>
-    <input type="text" class="form-control" id="bank-name" required>
-  </div>
-  <div class="form-group">
-    <label for="account-number">Số tài khoản:</label>
-    <input type="text" class="form-control" id="account-number" required>
-  </div>
-  <div class="form-group">
-    <label for="pin">Mã PIN:</label>
-    <input type="password" class="form-control" id="pin" required>
-  </div>
-  <button onclick="showSuccessMessage()" class="btn btn-primary btn-lg btn-block" id="pay-with-card-btn">&#x2190; Thanh toán bằng thẻ ngân hàng</button>
-</div>
 <script>
     document.getElementById("btnDatHang").addEventListener("click", function(event) {
         event.preventDefault(); // Ngăn chặn gửi form mặc định

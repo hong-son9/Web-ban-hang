@@ -143,8 +143,8 @@ const csrftoken = getCookie('csrftoken');
       </ul>
       <form class="d-flex" method="POST" action="{% url 'search' %}">
         {% csrf_token %}
-        <input class="form-control me-2" name="searched" type="search" placeholder="Search" aria-label="Search">
-        <button style="color: white" class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" name="searched" type="search" placeholder="Tìm kiếm" aria-label="Search">
+        <button style="color: white; white-space: nowrap;" class="btn btn-outline-success" type="submit">Tìm kiếm</button>
       </form>
             <div class="navbar-nav me-auto mb-2 mb-lg-0" style="display: flex; align-items: center;">
       <div style="margin-left: 15px; visibility:{{user_login}};">

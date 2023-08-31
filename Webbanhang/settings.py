@@ -91,7 +91,23 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 
 ]
+# Cấu hình email
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_HOST = 'smtp.example.com'
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True
+#EMAIL_HOST_USER = 'your_username'
+#EMAIL_HOST_PASSWORD = 'your_password'
+# settings.py
 
+# ...
+
+#try:
+  #  from local_settings import *
+#except ImportError:
+#    pass
+
+# ...
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

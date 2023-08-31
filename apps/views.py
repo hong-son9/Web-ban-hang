@@ -6,6 +6,10 @@ import json
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+import random
+import string
+from django.core.mail import send_mail
+
 # Create your views here.
 def register(request):
         #Xử dụng form của Django
@@ -287,6 +291,25 @@ def hotline(request):
         }
         return render(request, 'app/hotline.html', context)
 def forgetpass(request):
+        # if request.method == 'POST':
+         #       email = request.POST.get('email')
+          #      try:
+          #              user = User.objects.get(email=email)
+          #              new_password = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(12))
+          #              user.set_password(new_password)
+           #             user.save()
+           #             send_mail(
+           #                     'Password Reset',
+            #                    f'Your new password: {new_password}',
+            #                    'from@example.com',
+            #                    [email],
+            #                    fail_silently=False,
+            #           )
+            #            messages.success(request, 'Mật khẩu đã được thay đổi, check email để lấy mật khẩu')
+          #              return redirect('login')
+          #      except User.DoesNotExist:
+           #             messages.info(request, 'Không có tài khoản nào với email này')
+           #             return redirect('forget_pass')
         context = {
                 'user_not_login': 'show',
                 'user_login': 'hidden',

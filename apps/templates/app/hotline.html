@@ -6,13 +6,14 @@
     .marquee {
         overflow: hidden;
         white-space: nowrap;
+        top:-60px;
     }
 
     .marquee-text {
         display: inline-block;
         font-size: 20px; /* Đổi giá trị font-size tại đây */
         font-weight: bold;
-        animation: marquee 10s linear infinite; /* Điều chỉnh thời gian và animation theo ý muốn */
+        animation: marquee 20s linear infinite; /* Điều chỉnh thời gian và animation theo ý muốn */
     }
 
     @keyframes marquee {
@@ -23,11 +24,7 @@
             transform: translateX(-100%); /* Kết thúc ở bên trái */
         }
     }
-    body {
-        position: relative;
-        height: 100vh;
-        margin: 0;
-    }
+
     .call-btn {
         display: inline-block;
         justify-content: center;
@@ -44,12 +41,10 @@
         color: white;
     }
 </style>
-<body>
-
     <div class="marquee">
     <p class="marquee-text">Hotline hỗ trợ: 036-545-4643(Phí Hồng Sơn) - Giờ làm việc: Thứ 2 - Thứ 6, 8:00 AM - 5:00 PM</p>
     </div>
         <a href="tel:0365454643" class="call-btn">&#x2190; Gọi ngay</a>
         {% endblock hotline %}
-</body>
+
 

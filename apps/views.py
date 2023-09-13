@@ -275,6 +275,7 @@ def hotline(request):
                 cartItems = order.get_cart_items
                 user_not_login = "hidden"
                 user_login = "show"
+                categories = Category.objects.filter(is_sub=False)
         else:
                 items = []
                 order = {'get_cart_items': 0, 'get_cart_total': 0}
@@ -288,6 +289,7 @@ def hotline(request):
                 'cartItems': cartItems,
                 'user_not_login': user_not_login,
                 'user_login': user_login,
+                'categories': categories,
         }
         return render(request, 'app/hotline.html', context)
 def forgetpass(request):

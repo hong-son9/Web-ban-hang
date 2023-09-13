@@ -108,11 +108,16 @@ const csrftoken = getCookie('csrftoken');
         transform: translateX(-100%); /* Kết thúc ở bên trái */
     }
   }
+  .full{
+       width: 1300px;
+       max-width: calc(100%-48px);
+       margin: 0 auto;
+  }
   </style>
 <body>
     <!--Header-->
 <nav class="navbar navbar-expand-lg bg-body-tertiary" >
-  <div class="container-fluid" style="background-color: #F7462E; color: white;">
+  <div class="container-fluid" style="background-image: linear-gradient(-90deg, #d38312, #a83279);; color: white;">
     <a class="navbar-brand" href="{% url 'home' %}">
         <img src="{% static 'images/logo1.png' %} " width="55" height="55">
     </a>
@@ -171,6 +176,7 @@ const csrftoken = getCookie('csrftoken');
 </div>
   </div>
 </nav>
+    <div class="full">
     <!--Giao diện banner -->
     {% block banner_slider %} {% endblock banner_slider %}
     <!--Giao diện sản phẩm -->
@@ -185,6 +191,8 @@ const csrftoken = getCookie('csrftoken');
     {% block content_checkout %} {% endblock content_checkout %}
     <!--Giao diện register-->
     {% block register %} {% endblock register %}
+    <!--Giao diện login-->
+    {% block login %} {% endblock login %}
     <!-- Giao diện search -->
      {% block search %}  {% endblock search %}
     <!--Giao diện forgetpassword -->
@@ -195,6 +203,7 @@ const csrftoken = getCookie('csrftoken');
     {% block pay %} {% endblock pay %}
     <!-- Giao diện sidebar -->
     {% block sidebar %} {% endblock sidebar %}
+    </div>
     <!-- Footer -->
     <footer style="background-color: #011C3A;"class="text-center text-white">
   <!-- Grid container -->

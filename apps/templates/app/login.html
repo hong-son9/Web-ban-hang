@@ -1,6 +1,5 @@
 {% extends 'app/base.html' %}
 {% load static %}
-
         {% block login %}
 <style>
     .btn-lg{
@@ -67,6 +66,7 @@
                     <p class="message h6 fw-bold mb-5 mx-1 mx-md-4 mt-4" style="color:red; font-weight: bold;position: relative; top: -50px;">{{ message }}</p>
     {% endfor %}
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                      {% csrf_token %}
                     <button type="submit" class="btn btn-primary btn-lg" style="position: relative; top: -50px; ">Đăng nhập</button>
                   </div>
 <p class="text-center h6 fw-bold mb-5 mx-1 mx-md-4 mt-4" style="position: relative; top: -50px;">Bạn chưa có tài khoản? <a style="text-decoration: none;" id="register" href="{% url 'register' %}">Tạo tài khoản</a></p>

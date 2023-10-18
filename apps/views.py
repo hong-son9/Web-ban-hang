@@ -219,7 +219,6 @@ def category(request):
                 cartItems = order['get_cart_items']
                 user_not_login = "show"
                 user_login = "hidden"
-
         # Ng dùng chọn
         active_category = request.GET.get('category', '')
         context = {

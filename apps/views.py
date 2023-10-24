@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
+from django.urls import reverse
 from .models import *
 import json
 from django.contrib.auth.forms import UserCreationForm
@@ -18,7 +19,8 @@ def register(request):
                 form = CreateUserForm(request.POST)
                 if form.is_valid():
                         form.save()
-                return redirect('login')
+                        # Chuyển hướng đến trang đăng nhập sau khi đăng ký thành công
+                        return redirect(reverse('login'))
         context = {
                 'form': form,
                 'user_login': 'hidden',
@@ -38,8 +40,11 @@ def login_account(request):
                         return redirect('home')
                 else:
                         messages.info(request, 'Tài khoản hoặc mật khẩu không chính xác!!!')
+        categories = Category.objects.filter(is_sub=False)
+
         context = {
-                'user_login': 'hidden'
+                'user_login': 'hidden',
+                'categories': categories
         }
         return render(request, 'app/login.html', context)
 def logout_account(request):

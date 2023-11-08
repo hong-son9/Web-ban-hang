@@ -287,6 +287,8 @@ def hotline(request):
                 #Ân đăng nhập và đăng kí
                 user_not_login = "show"
                 user_login = "hidden"
+                categories = Category.objects.filter(is_sub=False)
+
         context = {
                 'items': items,
                 'order': order,
@@ -311,8 +313,8 @@ def forgetpass(request):
             #                    [email],
             #                    fail_silently=False,
             #           )
-            #            messages.success(request, 'Mật khẩu đã được thay đổi, check email để lấy mật khẩu')
-          #              return redirect('login')
+            #           messages.success(request, 'Mật khẩu đã được thay đổi, check email để lấy mật khẩu')
+          #               return redirect('login')
           #      except User.DoesNotExist:
            #             messages.info(request, 'Không có tài khoản nào với email này')
            #             return redirect('forget_pass')

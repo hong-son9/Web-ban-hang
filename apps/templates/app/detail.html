@@ -1,13 +1,5 @@
 {% extends 'app/base.html' %}
 {% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-</head>
-<body>
         {% block detail %}
     {% for product in products %}
         <br/>
@@ -32,7 +24,7 @@
                             </div>
                             <p class="about">{{product.detail}}</p>
                             <div class="cart mt-4 align-items-center">
-                                <button class="btn btn-danger text-uppercase mr-2 px-4 add-btn update-cart" data-product={{product.id}} data-action ="add">Thêm vào giỏ hàng</button> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i> </div>
+                                <button class="btn btn-danger text-uppercase mr-2 px-4 add-btn update-cart" data-product={{product.id}} data-action ="add">Thêm vào giỏ hàng</button> <i class="fa fa-heart text-muted" class="heart" id="heart"></i> <i class="fa fa-share-alt text-muted"></i> </div>
                         </div>
                     </div>
                 </div>
@@ -42,5 +34,3 @@
 </div>
         {% endfor %}
         {% endblock detail %}
-</body>
-</html>

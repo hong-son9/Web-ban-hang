@@ -7,24 +7,9 @@
         overflow: hidden;
         white-space: nowrap;
         top:-60px;
-    }
-
-    .marquee-text {
-        display: inline-block;
         font-size: 20px; /* Đổi giá trị font-size tại đây */
         font-weight: bold;
-        animation: marquee 20s linear infinite; /* Điều chỉnh thời gian và animation theo ý muốn */
     }
-
-    @keyframes marquee {
-        0% {
-            transform: translateX(100%); /* Bắt đầu từ phải cùng */
-        }
-        100% {
-            transform: translateX(-100%); /* Kết thúc ở bên trái */
-        }
-    }
-
     .call-btn {
         display: inline-block;
         justify-content: center;
@@ -42,7 +27,13 @@
     }
 </style>
     <div class="marquee">
-    <p class="marquee-text">Hotline hỗ trợ: 036-545-4643(Phí Hồng Sơn) - Giờ làm việc: Thứ 2 - Thứ 6, 8:00 AM - 5:00 PM</p>
+        <h1>THÔNG TIN CỬA HÀNG</h1>
+    <p style="margin-left: 20px;">Tên cửa hàng: Pê Hát Ét</p>
+    <p style="margin-left: 20px;">Hotline hỗ trợ: 036-545-4643</p>
+    <p style="margin-left: 20px;">Giờ làm việc: Thứ 2 - Thứ 6, 8:00 AM - 5:00 PM</p>
+    <p style="margin-left: 20px;">Địa chỉ: 8 ngõ 7, Nguyên Xá, Minh Khai, Hà Nội</p>
+        <h1>BẢN ĐỒ</h1>
+
     </div>
         <a href="tel:0365454643" class="call-btn">&#x2190; Gọi ngay</a>
         {% endblock hotline %}

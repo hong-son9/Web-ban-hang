@@ -9,6 +9,7 @@
     <link href="{% static 'app/css/owl.carousel.min.css' %}" rel = "stylesheet" />
     <link href="{% static 'app/css/style.css' %}" rel = "stylesheet" />
     <link href="{% static 'app/css/main.css' %}" rel = "stylesheet" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- js -->
@@ -58,6 +59,7 @@ const csrftoken = getCookie('csrftoken');
         max-width:  calc(100% - 48px);
         margin: 0 auto;*/
         padding-top: 80px; /* Đặt giá trị phù hợp với chiều cao của header (80px là ví dụ) */
+        background-color: #ccc;
   }
     /* CSS để thêm hiệu ứng phóng to vào ảnh */
   .navbar-brand {
@@ -199,15 +201,15 @@ body {
       </ul>
       <form class="d-flex" method="POST" action="{% url 'search' %}">
         {% csrf_token %}
-        <input class="form-control me-2" name="searched" type="search" placeholder="Tìm kiếm" aria-label="Search">
+        <input class="form-control me-2" name="searched" type="search" placeholder="Bạn tìm gì ...." aria-label="Search">
         <button style="color: white; white-space: nowrap;" class="btn btn-outline-success" type="submit">Tìm kiếm</button>
       </form>
             <div class="navbar-nav me-auto mb-2 mb-lg-0" style="display: flex; align-items: center;">
       <div style="margin-left: 15px; visibility:{{user_login}};">
-        Hello {{request.user}}
+        Xin chào {{request.user}}
       </div>
       <div style="margin-right: 10px; visibility:{{user_login}};">
-        <a style="margin-left: 10px; text-decoration: none; color: white;" href="{% url 'logout' %}">Đăng xuất</a>
+        <a style="margin-left: 20px; text-decoration: none; color: white;" href="{% url 'logout' %}">Đăng xuất</a>
       </div>
 </div>
       <div class="form-inline my-2 my-lg-0" style="visibility:{{user_not_login}}">

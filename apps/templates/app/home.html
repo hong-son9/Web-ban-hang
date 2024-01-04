@@ -2,7 +2,7 @@
 {% load static %}
 {% block banner_slider %}
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-wrap="true" style="display: flex; width: 1250px; height:400px;" >
-  <div class="carousel-inner" >
+  <div class="carousel-inner" style="border-radius: 15px;" >
     <div class="carousel-item active">
       <img src="{% static 'app/images/banner/b2.jpg' %}" class="d-block w-100" alt="...">
     </div>
@@ -30,8 +30,6 @@
     <img src="{% static 'app/images/banner/b17.jpg' %}" class="d-block w-100" alt="...">
     <img src="{% static 'app/images/banner/b15.png' %}" class="d-block w-100" style="margin-top:5px;"alt="...">
   </div>
-</div>
-    </div>
 
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -42,21 +40,18 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-
 <script>
   // Lấy carousel
   var carousel = new bootstrap.Carousel(document.getElementById('carouselExampleControls'), {
     interval: 2000, // Thời gian chuyển ảnh (đơn vị: mili giây)
     wrap: true, // Chạy lặp lại các ảnh
   });
-
 </script>
 {% endblock banner_slider %}
+
+
 {% block main-content %}
 <style>
-    .carousel-item{
-    border-radius: 15px;
-    }
       /* CSS để thêm hiệu ứng phóng to vào ảnh */
     .thubnail {
         transition: transform 0.3s ease;
@@ -69,6 +64,9 @@
         transform: scale(1.2);
     }
 </style>
+
+
+
 <div class="row" style="width:100%">
   {% for product in products %}
   <div class="col-lg-3">
@@ -84,4 +82,67 @@
   {% endfor %}
 </div>
   <br /><br /><br />
+<style>
+      .div-container {
+        margin: 20px;
+        height: 240px;
+        border: 1px solid #ccc;
+        border-radius: 25px;
+        background-color: #f7f2f2;
+      }
+
+      .div-container .sp-text {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .div-container .sp-container {
+
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        justify-content: space-evenly;
+        gap: 20px;
+      }
+      .sp-container .sp {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: black;
+      }
+
+
+    </style>
+<div class="div-container">
+      <div class="sp-text">PHÍ HỒNG SƠN  - SỐ 1 CHẤT LƯỢNG & HẬU MÃI</div>
+      <div class="sp-container">
+        <div class="sp">
+          <div>
+            <img src="{% static 'app/images/banner/a1.png' %}">
+          </div>
+          <div><span>Miễn phí vận chuyển</span></div>
+        </div>
+        <div class="sp">
+          <div>
+            <img src="{% static 'app/images/banner/a2.png' %}">
+          </div>
+          <div><span>Bảo hành chính hãng</span></div>
+        </div>
+        <div class="sp">
+          <div>
+            <img src="{% static 'app/images/banner/a3.png' %}">
+          </div>
+          <div><span>Quà tặng khi mua sản phẩm</span></div>
+        </div>
+        <div class="sp">
+          <div>
+            <img src="{% static 'app/images/banner/a4.png' %}">
+          </div>
+          <div><span>Tích điểm khách hàng thân thiết</span></div>
+        </div>
+      </div>
+    </div>
+
     {% endblock main-content %}

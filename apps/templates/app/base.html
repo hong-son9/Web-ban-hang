@@ -18,6 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
     <script src="{% static 'app/js/all.min.js' %}"></script>
     <script src="{% static 'app/js/myscript.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAKlEJcWp5I5a5wE" crossorigin="anonymous"></script>
@@ -256,6 +257,7 @@ body {
     {% block pay %} {% endblock pay %}
     <!-- Giao diện sidebar -->
     {% block sidebar %} {% endblock sidebar %}
+        {% block zalo %} {% endblock zalo %}
     </div>
   <!--</div><-->
     <!-- Footer -->
@@ -360,5 +362,93 @@ body {
         </footer>
         <script src="{% static 'app/js/cart.js' %}"></script>
 
+
+<!--2 nút zalo + dienthoai -->
+ <div class="zalo-button">
+    <a href="https://zalo.me/0365454643">
+      <img src="{% static 'images/zalo3.png' %}" alt="Zalo">
+    </a>
+  </div>
+   <div class="call-button">
+    <a href="0365454643">
+      <img src="{% static 'app/images/dienthoai.jpg' %}" alt="Zalo">
+    </a>
+  </div>
+<style>
+
+.zalo-button {
+  position: fixed;
+  bottom: 80px;
+  left: 20px;
+  cursor: pointer;
+  z-index: 999;
+  overflow: hidden; /* Ngăn chặn đường viền che khuất nút */
+}
+.zalo-button::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 123, 255, 0.7);
+  animation: pulse 1s infinite;
+  box-sizing: border-box;
+  pointer-events: none; /* Cho phép sự kiện nhấp vào liên kết đi qua */
+}
+
+.zalo-button img {
+  width: 70px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative; /* Đảm bảo hình ảnh nằm trên đỉnh của đường viền */
+  z-index: 1; /* Đảm bảo hình ảnh nằm trên đỉnh của đường viền */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+}
+
+.call-button {
+  position: fixed;
+  bottom: 5px;
+  left: 25px;
+  cursor: pointer;
+  z-index: 999;
+  overflow: hidden; /* Ngăn chặn đường viền che khuất nút */
+}
+.call-button::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid red;
+  animation: pulse 1s infinite;
+  box-sizing: border-box;
+  pointer-events: none; /* Cho phép sự kiện nhấp vào liên kết đi qua */
+}
+
+.call-button img {
+  width: 60px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative; /* Đảm bảo hình ảnh nằm trên đỉnh của đường viền */
+  z-index: 1; /* Đảm bảo hình ảnh nằm trên đỉnh của đường viền */
+}
+
+</style>
 </body>
 </html>

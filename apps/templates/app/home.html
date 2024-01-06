@@ -65,23 +65,6 @@
     }
 </style>
 
-
-
-<div class="row" style="width:100%">
-  {% for product in products %}
-  <div class="col-lg-3">
-    <img class="thubnail" src="{{product.ImageURL}}" height="200">
-    <div class="box-element product">
-      <h6><strong>{{product.name}}</strong></h6>
-      <hr>
-      <buttom data-product={{product.id}} data-action ="add" class="btn  btn-outline-secondary add-btn update-cart" style="color: black;">Thêm vào giỏ hàng</buttom>
-      <a class="btn btn-outline-success" href="{% url 'detail' %}?id={{product.id}}">Xem</a>
-      <h4 style="display: inline-block; float: right; color:red; font-size: 20px; margin-top:10px;"><strong>{{product.price}}</strong></h4>
-  </div>
-</div>
-  {% endfor %}
-</div>
-  <br /><br /><br />
 <style>
       .div-container {
         margin: 20px;
@@ -144,5 +127,22 @@
         </div>
       </div>
     </div>
+
+<div class="row" style="width:100%">
+  {% for product in products %}
+  <div class="col-lg-3">
+    <img class="thubnail" src="{{product.ImageURL}}" height="200">
+    <div class="box-element product">
+      <h6><strong>{{product.name}}</strong></h6>
+      <hr>
+      <buttom data-product={{product.id}} data-action ="add" class="btn  btn-outline-secondary add-btn update-cart" style="color: black;">Thêm vào giỏ hàng</buttom>
+      <a class="btn btn-outline-success" href="{% url 'detail' %}?id={{product.id}}">Xem</a>
+      <h4 style="display: inline-block; float: right; color:red; font-size: 20px; margin-top:10px;"><strong>{{product.price}}</strong></h4>
+  </div>
+</div>
+  {% endfor %}
+</div>
+  <br /><br /><br />
+
 
     {% endblock main-content %}

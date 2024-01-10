@@ -4,16 +4,75 @@ from django.template import loader
 from django.urls import reverse
 from .models import *
 import json
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 import random
 import string
 from django.core.mail import send_mail
 
-# Create your views here.
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from .serializers import OrderSerializer
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
+def register_api(request, user_id=None):
+    if request.method == 'GET':
+        if user_id:
+            user = get_object_or_404(User, pk=user_id)
+            user_data = {'id': user.id, 'username': user.username, 'password': user.password, 'email': user.email}
+            return Response({'user': user_data}, status=status.HTTP_200_OK)
+        else:
+            users = User.objects.all()
+            user_data = [{'id': user.id, 'username': user.username, 'password': user.password, 'email': user.email} for user in users]
+            return Response({'users': user_data}, status=status.HTTP_200_OK)
+
+    # Xử lý POST request
+    elif request.method == 'POST':
+            form = UserCreationForm(request.data)
+            if form.is_valid():
+                    form.save()
+                    username = form.cleaned_data.get('username')
+                    response_data = {
+                            'username': username,
+                            'message': 'Register successful',
+                    }
+                    return Response(response_data, status=status.HTTP_201_CREATED)
+            errors = form.errors.get_json_data()
+            return Response(errors, status=status.HTTP_400_BAD_REQUEST)
+    # Xử lý PUT request (Sửa thông tin người dùng)
+    elif request.method == 'PUT':
+            user = get_object_or_404(User, pk=user_id)
+            try:
+                    # Chuyển đổi dữ liệu từ chuỗi JSON sang dict
+                    data = json.loads(request.body)
+            except json.JSONDecodeError:
+                    return Response({'error': 'Invalid JSON data'}, status=status.HTTP_400_BAD_REQUEST)
+
+            # Sử dụng UserChangeForm để xử lý cập nhật thông tin người dùng
+            form = UserChangeForm(data, instance=user)
+
+            if form.is_valid():
+                    form.save()
+                    return Response({'message': 'User updated successfully'}, status=status.HTTP_200_OK)
+
+            return Response({'error': 'Invalid data'}, status=status.HTTP_400_BAD_REQUEST)
+    # Xử lý DELETE request (Xóa người dùng)
+    elif request.method == 'DELETE':
+        user = get_object_or_404(User, pk=user_id)
+        user.delete()
+        return Response({'message': 'User deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+
+    return Response({'error': 'Method Not Allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
 def register(request):
-        #Xử dụng form của Django
+        # Xử dụng form của Django
         form = CreateUserForm()
         if request.method == 'POST':
                 form = CreateUserForm(request.POST)
@@ -26,6 +85,8 @@ def register(request):
                 'user_login': 'hidden',
         }
         return render(request, 'app/register.html', context)
+
+
 def login_account(request):
         #Xác thực người dùng
         if request.user.is_authenticated:
@@ -81,6 +142,48 @@ def home(request):
                 'categories': categories,
         }
         return render(request, 'app/home.html', context)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+@login_required
+def cart_api(request):
+        customer = request.user
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        cart_items = order.get_cart_items()
+        if request.method == 'GET':
+                # Lấy thông tin đơn hàng và trả về dưới dạng JSON
+                order_data = {
+                        'items': items,
+                        'cart_items': cart_items,
+                        'user_not_login': "hidden",
+                        'user_login': "show",
+                }
+                serializer = OrderSerializer(order_data)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+
+        elif request.method == 'PUT':
+                # Xử lý yêu cầu PUT để cập nhật thông tin đơn hàng
+                # (bạn cần viết logic xử lý cập nhật theo yêu cầu cụ thể của bạn)
+                # Ví dụ: cập nhật số lượng sản phẩm trong đơn hàng
+                item_id = request.data.get('item_id')
+                quantity = request.data.get('quantity')
+
+                order_item = get_object_or_404(OrderItem, id=item_id)
+                order_item.quantity = quantity
+                order_item.save()
+
+                return Response({'message': 'Order updated successfully'}, status=status.HTTP_200_OK)
+
+        elif request.method == 'DELETE':
+                # Xử lý yêu cầu DELETE để xóa một sản phẩm khỏi đơn hàng
+                item_id = request.data.get('item_id')
+
+                order_item = get_object_or_404(OrderItem, id=item_id)
+                order_item.delete()
+
+                return Response({'message': 'Order item deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+
+
 def cart(request):
         #Xác thực user
         if request.user.is_authenticated:

@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
-# Create your models here.
-
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from django import forms
+from django.contrib.auth import get_user_model
 class Category(models.Model):
     sub_category = models.ForeignKey('self', on_delete=models.CASCADE, related_name='sub_categories', null=True, blank=True)
     is_sub = models.BooleanField(default=False)
@@ -15,6 +15,36 @@ class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
+User = get_user_model()
+
+class ChangeUserProfileForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput, required=False)
+    password_confirmation = forms.CharField(widget=forms.PasswordInput, required=False)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+
+    def clean_password_confirmation(self):
+        password = self.cleaned_data.get('password')
+        password_confirmation = self.cleaned_data.get('password_confirmation')
+
+        if password and password != password_confirmation:
+            raise forms.ValidationError('Passwords do not match.')
+
+        return password_confirmation
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        password = self.cleaned_data.get('password')
+
+        if password:
+            user.set_password(password)
+
+        if commit:
+            user.save()
+
+        return user
 class Product(models.Model):
     category = models.ManyToManyField(Category, related_name='product')
     name = models.CharField(max_length=255, null=True)

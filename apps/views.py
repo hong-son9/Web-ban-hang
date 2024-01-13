@@ -4,7 +4,7 @@ from django.template import loader
 from django.urls import reverse
 from .models import *
 import json
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 import random
@@ -18,8 +18,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.urls import reverse
+from .serializers import OrderItemSerializer
 from django.contrib.auth.decorators import login_required
-from .serializers import OrderSerializer
+
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
 def register_api(request, user_id=None):
     if request.method == 'GET':
@@ -86,7 +87,18 @@ def register(request):
         }
         return render(request, 'app/register.html', context)
 
+def change_account(request):
+        if request.method == 'POST':
+                form = ChangeUserProfileForm(request.POST, instance=request.user)
+                if form.is_valid():
+                        form.save()
+                        # Xử lý sau khi thay đổi thông tin thành công
+                        return redirect('login')  # Điều chỉnh URL đích của bạn
+        else:
+                form = ChangeUserProfileForm(instance=request.user)
 
+        context = {'form': form}
+        return render(request, 'app/change_account.html', context)
 def login_account(request):
         #Xác thực người dùng
         if request.user.is_authenticated:
@@ -143,46 +155,40 @@ def home(request):
         }
         return render(request, 'app/home.html', context)
 
-@api_view(['GET', 'PUT', 'DELETE'])
-@login_required
+
+@api_view(['GET', 'POST'])
 def cart_api(request):
-        customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-        cart_items = order.get_cart_items()
-        if request.method == 'GET':
-                # Lấy thông tin đơn hàng và trả về dưới dạng JSON
-                order_data = {
-                        'items': items,
-                        'cart_items': cart_items,
-                        'user_not_login': "hidden",
-                        'user_login': "show",
-                }
-                serializer = OrderSerializer(order_data)
-                return Response(serializer.data, status=status.HTTP_200_OK)
+        if request.user.is_authenticated:
+                customer = request.user
+                order, created = Order.objects.get_or_create(customer=customer, complete=False)
 
-        elif request.method == 'PUT':
-                # Xử lý yêu cầu PUT để cập nhật thông tin đơn hàng
-                # (bạn cần viết logic xử lý cập nhật theo yêu cầu cụ thể của bạn)
-                # Ví dụ: cập nhật số lượng sản phẩm trong đơn hàng
-                item_id = request.data.get('item_id')
-                quantity = request.data.get('quantity')
+                if request.method == 'GET':
+                        # Trả về thông tin về sản phẩm trong giỏ hàng
+                        items = order.orderitem_set.all()
+                        serializer = OrderItemSerializer(items, many=True)
+                        return Response(serializer.data, status=status.HTTP_200_OK)
 
-                order_item = get_object_or_404(OrderItem, id=item_id)
-                order_item.quantity = quantity
-                order_item.save()
+                elif request.method == 'POST':
+                        # Xử lý thêm sản phẩm vào giỏ hàng
+                        serializer = OrderItemSerializer(data=request.data)
+                        if serializer.is_valid():
+                                product_id = serializer.validated_data['product']
+                                quantity = serializer.validated_data['quantity']
 
-                return Response({'message': 'Order updated successfully'}, status=status.HTTP_200_OK)
+                                # Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+                                order_item, created = OrderItem.objects.get_or_create(order=order, product_id=product_id)
 
-        elif request.method == 'DELETE':
-                # Xử lý yêu cầu DELETE để xóa một sản phẩm khỏi đơn hàng
-                item_id = request.data.get('item_id')
+                                # Cập nhật số lượng
+                                order_item.quantity += quantity
+                                order_item.save()
 
-                order_item = get_object_or_404(OrderItem, id=item_id)
-                order_item.delete()
+                                return Response({'message': 'Product added to cart successfully'},
+                                                status=status.HTTP_201_CREATED)
 
-                return Response({'message': 'Order item deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+                        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+        else:
+                return Response({'error': 'User not authenticated'}, status=status.HTTP_401_UNAUTHORIZED)
 
 def cart(request):
         #Xác thực user

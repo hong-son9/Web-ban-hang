@@ -10,6 +10,7 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('logout/', views.logout_account, name='logout'),
     path('', views.home, name='home'),
+    path('home_api/', views.home_api, name="home_api"),
     path('cart/', views.cart, name='cart'),
     path('cart_api/', views.cart_api, name='cart_api'),
     path('checkout/', views.checkout, name='checkout'),

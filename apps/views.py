@@ -18,7 +18,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.urls import reverse
-from .serializers import OrderItemSerializer
+from .serializers import OrderItemSerializer, ProductSerializer
 from django.contrib.auth.decorators import login_required
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
@@ -124,6 +124,30 @@ def logout_account(request):
         #Xủ lí thoát
         logout(request)
         return redirect('login')
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
+def home_api(request, product_id=None):
+        if request.user.is_authenticated:
+                customer = request.user
+                products = Product.objects.all()
+                order, created = Order.objects.get_or_create(customer=customer, complete = False)
+                if request.method == 'GET':
+                        serializer = ProductSerializer(products, many=True)
+                        return Response(serializer.data, status=status.HTTP_200_OK)
+                elif request.method == 'POST':
+                        serializer = ProductSerializer(data=request.data)
+                        if serializer.is_valid():
+                                serializer.save()
+                                return Response(serializer.data, status=status.HTTP_201_CREATED)
+                        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+                elif request.method == 'DELETE':
+                        try:
+                                product = Product.objects.get(id=product_id)
+                        except Product.DoesNotExist:
+                                return Response({'error': 'Product not found'}, status=status.HTTP_404_NOT_FOUND)
+                        product.delete()
+                        return Response({'message': 'Product deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+        return Response({'error': 'User not authenticated'}, status=status.HTTP_401_UNAUTHORIZED)
 def home(request):
         if request.user.is_authenticated:
                 customer = request.user
@@ -156,15 +180,15 @@ def home(request):
         return render(request, 'app/home.html', context)
 
 
-@api_view(['GET', 'POST'])
-def cart_api(request):
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
+def cart_api(request, item_id = None):
         if request.user.is_authenticated:
                 customer = request.user
-                order, created = Order.objects.get_or_create(customer=customer, complete=False)
 
+                order, created = Order.objects.get_or_create(customer=customer, complete=False)
+                items = order.orderitem_set.all()
                 if request.method == 'GET':
                         # Trả về thông tin về sản phẩm trong giỏ hàng
-                        items = order.orderitem_set.all()
                         serializer = OrderItemSerializer(items, many=True)
                         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -174,18 +198,28 @@ def cart_api(request):
                         if serializer.is_valid():
                                 product_id = serializer.validated_data['product']
                                 quantity = serializer.validated_data['quantity']
-
                                 # Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
                                 order_item, created = OrderItem.objects.get_or_create(order=order, product_id=product_id)
-
                                 # Cập nhật số lượng
                                 order_item.quantity += quantity
                                 order_item.save()
 
-                                return Response({'message': 'Product added to cart successfully'},
-                                                status=status.HTTP_201_CREATED)
+                                return Response({'message': 'Product added to cart successfully'}, status=status.HTTP_201_CREATED)
 
                         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                elif request.method == 'PUT':
+                        serializer = OrderItemSerializer(items, data=request.data, partial=True)
+                        if serializer.is_valid():
+                                serializer.save()
+                                return Response({'message': 'Order item updated successfully'}, status=status.HTTP_200_OK)
+                        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                elif request.method == 'DELETE':
+                        try:
+                                item = order.orderitem_set.get(id=item_id)
+                        except OrderItem.DoesNotExist:
+                                return Response({'error': 'Order item not found'}, status=status.HTTP_404_NOT_FOUND)
+                        item.delete()
+                        return Response({'message': 'Order item deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
 
         else:
                 return Response({'error': 'User not authenticated'}, status=status.HTTP_401_UNAUTHORIZED)

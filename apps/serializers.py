@@ -3,7 +3,8 @@ from .models import OrderItem, Product
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ['id', 'name', 'price']
+        fields = '__all__'
+        image = serializers.ImageField()
 class OrderItemSerializer(serializers.ModelSerializer):
     product = ProductSerializer()
     class Meta:

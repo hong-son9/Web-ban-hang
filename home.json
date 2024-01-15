@@ -1,0 +1,316 @@
+[
+    {
+        "id": 1,
+        "name": "Sữa Need Golden Cow Milk",
+        "price": 20.0,
+        "digital": true,
+        "image": "/images/cow-milk.png",
+        "detail": "Giúp đường ruột trẻ phát triển khỏe mạnh, bé tiêu hóa tốt và không bị táo bón 💁‍♀️\r\nTăng cường hệ miễn dịch🔥🔥🔥\r\nGiúp trẻ ăn ngon miệng.",
+        "category": [
+            6
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Sữa Need Goodness",
+        "price": 22.0,
+        "digital": false,
+        "image": "/images/tonemilk_WDanXr5_f4NjzlK.png",
+        "detail": "Sữa tươi Goodness 3,8% hộp 1 lít là sản phẩm dinh dưỡng tuyệt vời cho người muốn tăng cân hoặc bổ sung dưỡng chất thiết yếu hàng ngày.\r\n🔥🔥🔥 Đặc điểm nổi bật của sữa tươi nguyên kem Happy Barn 3,8%\r\n💁‍♀️Thành phần 100% sữa bò tươi nguyên chất, nguyên kem, sữa tươi Goodness 3,8% cung cấp nguồn năng lượng dồi dào để bạn bắt đầu một ngày mới.\r\n💁‍♀️Sản phẩm có thể uống trực tiếp hoặc cho vào nấu ăn, làm bánh tạo nên hương vị béo ngậy, thơm ngon rất hấp dẫn",
+        "category": [
+            6
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Sữa Need Lite Panner",
+        "price": 3.0,
+        "digital": false,
+        "image": "/images/curd-premium.png",
+        "detail": "Sữa có sẵn trong các gói nhiều kích cỡ khác nhau.🔥🔥🔥\r\nSữa Need Lite Panner là một loại đồ uống có hương vị ngọt và cảm giác mát lạnh, thường được làm từ sữa, kem béo và các nguyên liệu tạo mùi hoặc chất làm ngọt tự nhiên như bơ, sốt caramel hoặc syrup trái cây hay chocolate.",
+        "category": [
+            6
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Sữa Need Fresh Paneer",
+        "price": 4.0,
+        "digital": false,
+        "image": "/images/paneer-fresh.png",
+        "detail": "Sữa Need Fresh Paneer là sản phẩm Fresh Paneer được làm từ sữa bò tươi.\r\nSữa có sẵn trong các gói nhiều kích cỡ khác nhau.",
+        "category": [
+            6
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Sữa Need Mozzarella Cheese",
+        "price": 4.0,
+        "digital": false,
+        "image": "/images/mozzarellacheese.png",
+        "detail": "Sữa Need Mozzarella Cheese là sữa truyền thống từ miền nam nước Ý với những nguyên liệu chính là sữa trâu nước hoặc sữa các loại động vật khác. Mozzarella tươi thường có màu trắng hoặc vàng tùy theo sữa của động vật.",
+        "category": [
+            5,
+            6
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Sữa Need Milk Shake Dứa",
+        "price": 5.0,
+        "digital": false,
+        "image": "/images/milk-shake-vanilla.png",
+        "detail": "Sữa Need Milk Shake Dứa là một loại đồ uống có hương vị ngọt và cảm giác mát lạnh, thường được làm từ sữa, kem béo và các nguyên liệu tạo mùi hoặc chất làm ngọt tự nhiên như bơ, sốt caramel hoặc syrup trái cây hay chocolate.(vị dứa) 💁‍♀️ 💁‍♀️ 💁‍♀️",
+        "category": [
+            4,
+            5,
+            6
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Sữa Need Milk Shake Dâu",
+        "price": 5.0,
+        "digital": false,
+        "image": "/images/milk-shake-strawberry.png",
+        "detail": "Sữa Need Milk Shake Dâu là một loại đồ uống có hương vị ngọt và cảm giác mát lạnh, thường được làm từ sữa, kem béo và các nguyên liệu tạo mùi hoặc chất làm ngọt tự nhiên như bơ, sốt caramel hoặc syrup trái cây hay chocolate.(vị dâu) 💁‍♀️ 💁‍♀️",
+        "category": [
+            4,
+            5,
+            6
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Sữa Need Milk Shake Nho",
+        "price": 5.0,
+        "digital": false,
+        "image": "/images/milk-shake-chocolate.png",
+        "detail": "Sữa Need Milk Shake Nho là một loại đồ uống có hương vị ngọt và cảm giác mát lạnh, thường được làm từ sữa, kem béo và các nguyên liệu tạo mùi hoặc chất làm ngọt tự nhiên như bơ, sốt caramel hoặc syrup trái cây hay chocolate.(vị nho) 💁‍♀️ 💁‍♀️ 💁‍♀️",
+        "category": [
+            4,
+            5,
+            6
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Sữa Need Alpenvie",
+        "price": 6.0,
+        "digital": false,
+        "image": "/images/kulfi.png",
+        "detail": "Sữa Need Alpenvie là một niềm vui giòn và kem cho những người tìm kiếm niềm vui đang tìm kiếm niềm đam mê thuần túy, không có cảm giác tội lỗi\r\nTràn đầy sự tốt lành của hạt điều thật\r\nHương vị béo ngậy, béo ngậy của nó sẽ khiến bạn thèm ăn nhiều hơn cho đến miếng cuối cùng và sau đó.\r\nKem thỏa thích và mang đến cho vị giác của bạn một trải nghiệm tuyệt vời",
+        "category": [
+            6
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Sữa Need Daily Health Toned Milk",
+        "price": 6.0,
+        "digital": false,
+        "image": "/images/tonemilk_WDanXr5.png",
+        "detail": "Bổ sung các chất dinh dưỡng cần thiết cho cơ thể.\r\nHỗ trợ tăng cường thể lực cho người gầy yếu, người đang trong thời kỳ dưỡng bệnh.\r\nHỗ trợ phục hồi sức khỏe cho người mới ốm dậy.\r\nHỗ trợ cải thiện hệ tiêu hóa, kích thích ăn ngon miệng.\r\nVới lượng dinh dưỡng đầy đủ và cân đối, sản phẩm dùng để bổ sung và thay thế bữa ăn khi cần thiết.",
+        "category": [
+            6
+        ]
+    },
+    {
+        "id": 11,
+        "name": "Sữa Need Cow Ghee",
+        "price": 6.0,
+        "digital": false,
+        "image": "/images/cow-ghee.png",
+        "detail": "Sữa Need Cow Ghee được làm từ sữa bò ăn cỏ tự nhiên, qua các công đoạn phức tạp được thực hiện hoàn toàn thủ công.🔥🔥🔥 Bởi vậy sữa giữ được hàm lượng chất dinh dưỡng cao và hương vị thơm ngon tự nhiên.",
+        "category": [
+            6
+        ]
+    },
+    {
+        "id": 12,
+        "name": "Sữa Need Balance Double Toned Milk",
+        "price": 77.0,
+        "digital": false,
+        "image": "/images/dbtoned-milk.png",
+        "detail": "Sữa Double Toned ít chất béo nhưng vẫn giữ được các lợi ích khác của sữa. Đặc biệt, đối với những người muốn giảm béo nhưng vẫn muốn bổ sung canxi, thì Sữa đặc Double Toned là phù hợp nhất. Sữa có sẵn trong các gói nhiều kích cỡ khác nhau.",
+        "category": [
+            6
+        ]
+    },
+    {
+        "id": 13,
+        "name": "Sữa Sweet Lassi",
+        "price": 3.0,
+        "digital": false,
+        "image": "/images/sweet-lassi.png",
+        "detail": "Giúp xương và răng chắc khỏe Lợi ích đầu tiên của việc uống sữa thường xuyên chính là duy trì sự chắc khỏe cho xương và răng. ...",
+        "category": [
+            5,
+            6
+        ]
+    },
+    {
+        "id": 14,
+        "name": "Sữa Milo",
+        "price": 5.0,
+        "digital": false,
+        "image": "/images/milo_ZG3jRWN.png",
+        "detail": "Cung cấp năng lượng cho bé hoạt động và phát triển.\r\nHỗ trợ hệ tiêu hóa khỏe mạnh.\r\nTăng cường hệ miễn dịch cho bé\r\nHỗ trợ phát triển về chiều cao và cân nặng.\r\nTăng khả năng tư duy, phát triển trí não.",
+        "category": [
+            4,
+            6
+        ]
+    },
+    {
+        "id": 15,
+        "name": "Sữa Vinamilk",
+        "price": 6.0,
+        "digital": false,
+        "image": "/images/vinamilk_ovE9cqP.png",
+        "detail": "Giúp xương chắc khỏe. ...\r\nGiúp phát triển cơ bắp. ...\r\nTăng cường năng lượng. ...\r\nLàm đẹp da. ...\r\nHỗ trợ hệ miễn dịch, tăng cường sức đề kháng. ...\r\nHỗ trợ việc giảm cân. ...",
+        "category": [
+            4,
+            5,
+            6
+        ]
+    },
+    {
+        "id": 16,
+        "name": "Sữa Mộc Châu",
+        "price": 5.0,
+        "digital": false,
+        "image": "/images/mocchau_DPDZkMG.png",
+        "detail": "Giúp xương chắc khỏe. ...\r\nGiúp phát triển cơ bắp. ...\r\nTăng cường năng lượng. ...\r\nLàm đẹp da. ...\r\nHỗ trợ hệ miễn dịch, tăng cường sức đề kháng. ...\r\nHỗ trợ việc giảm cân. ...",
+        "category": [
+            5,
+            6
+        ]
+    },
+    {
+        "id": 17,
+        "name": "Sữa Ông Thọ",
+        "price": 23.0,
+        "digital": false,
+        "image": "/images/ongtho_GxY2cSg.png",
+        "detail": "Giúp xương chắc khỏe. ...\r\nGiúp phát triển cơ bắp. ...\r\nTăng cường năng lượng. ...\r\nLàm đẹp da. ...\r\nHỗ trợ hệ miễn dịch, tăng cường sức đề kháng. ...\r\nHỗ trợ việc giảm cân. ...",
+        "category": [
+            5,
+            6
+        ]
+    },
+    {
+        "id": 18,
+        "name": "Sữa Fami",
+        "price": 5.0,
+        "digital": false,
+        "image": "/images/fami_lmsbyu1.png",
+        "detail": "Giúp xương chắc khỏe. ...\r\nGiúp phát triển cơ bắp. ...\r\nTăng cường năng lượng. ...\r\nLàm đẹp da. ...",
+        "category": [
+            5,
+            6
+        ]
+    },
+    {
+        "id": 19,
+        "name": "Sữa Dutch Lady",
+        "price": 8.0,
+        "digital": false,
+        "image": "/images/dutch_lady_4HNzLMN.png",
+        "detail": "Cung cấp năng lượng cho bé hoạt động và phát triển.\r\nHỗ trợ hệ tiêu hóa khỏe mạnh.\r\nTăng cường hệ miễn dịch cho bé",
+        "category": [
+            5,
+            6
+        ]
+    },
+    {
+        "id": 20,
+        "name": "Sữa Devondale",
+        "price": 11.0,
+        "digital": false,
+        "image": "/images/Devondale_VqEWngJ.png",
+        "detail": "Cung cấp năng lượng cho bé hoạt động và phát triển.\r\nHỗ trợ phát triển về chiều cao và cân nặng.\r\nTăng khả năng tư duy, phát triển trí não.",
+        "category": [
+            5,
+            6
+        ]
+    },
+    {
+        "id": 21,
+        "name": "Sữa Gold Care",
+        "price": 300.0,
+        "digital": false,
+        "image": "/images/goldcare_MyhAYIT.png",
+        "detail": "Giúp xương chắc khỏe. ...\r\nGiúp phát triển cơ bắp. ...\r\nTăng cường năng lượng. ...\r\nLàm đẹp da. ...\r\nHỗ trợ hệ miễn dịch, tăng cường sức đề kháng. ...",
+        "category": [
+            5,
+            6
+        ]
+    },
+    {
+        "id": 22,
+        "name": "Sữa Optimum",
+        "price": 300.0,
+        "digital": false,
+        "image": "/images/Optimum_UuG5BxM.png",
+        "detail": "Cung cấp năng lượng cho bé hoạt động và phát triển.\r\nHỗ trợ hệ tiêu hóa khỏe mạnh.\r\nTăng cường hệ miễn dịch cho bé\r\nHỗ trợ phát triển về chiều cao và cân nặng.",
+        "category": [
+            4
+        ]
+    },
+    {
+        "id": 23,
+        "name": "Sữa Colosbaby",
+        "price": 400.0,
+        "digital": false,
+        "image": "/images/Colosbaby_JiKb6Lx.png",
+        "detail": "Cung cấp năng lượng cho bé hoạt động và phát triển.\r\nHỗ trợ hệ tiêu hóa khỏe mạnh.\r\nTăng cường hệ miễn dịch cho bé\r\nHỗ trợ phát triển về chiều cao và cân nặng.\r\nTăng khả năng tư duy, phát triển trí não.",
+        "category": [
+            4
+        ]
+    },
+    {
+        "id": 24,
+        "name": "Sữa Grow Plus đỏ Nutifood",
+        "price": 320.0,
+        "digital": false,
+        "image": "/images/Grow_Plus_%C4%91%E1%BB%8F_Nutifood.png",
+        "detail": "Giàu chất đạm, chất béo cần thiết như chất béo MCT - loại chất béo chuyển hóa nhanh, dễ tiêu hóa, hấp thu nhanh chóng vào cơ thể giúp các bé phục hồi tình trạng suy dinh dưỡng. Ngoài ra, còn hỗ trợ quá trình phát triển cấu trúc và chức năng của cơ thể, đặc biệt tốt cho trẻ có thể trạng yếu, gầy còm.",
+        "category": [
+            4
+        ]
+    },
+    {
+        "id": 26,
+        "name": "Vinamilk Dielac Alpha",
+        "price": 350.0,
+        "digital": false,
+        "image": "/images/Vinamilk_Dielac_Alpha_GLtE00t.png",
+        "detail": "Sữa Vinamilk Dielac có đạm Whey giàu Alpha-Lactalbumin cung cấp axít amin thiết yếu cùng Lysin, chất béo hỗ trợ tăng khả năng hấp thu, giúp trẻ tăng cân khỏe mạnh. Kẽm cùng vitamin nhóm B thúc đẩy quá trình chuyển hóa năng lượng, giúp trẻ ăn ngon miệng.",
+        "category": [
+            4
+        ]
+    },
+    {
+        "id": 27,
+        "name": "Sữa Care 100 Gold",
+        "price": 20.0,
+        "digital": false,
+        "image": "/images/Care_100_Gold.png",
+        "detail": "Sữa care 100 gold được nghiên cứu và sản xuất bởi hãng sữa bột Nutricare, có nguồn năng lượng bổ sung cao hơn hẳn 20% so với những loại sữa cho trẻ sơ sinh khác nên giúp cho bé có đủ năng lượng vừa tham gia vào các hoạt động vui chơi vừa học tập mỗi ngày.",
+        "category": [
+            4
+        ]
+    },
+    {
+        "id": 28,
+        "name": "Sữa Vinamilk Organic Gold",
+        "price": 400.0,
+        "digital": false,
+        "image": "/images/Vinamilk_Organic_Gold.png",
+        "detail": "Sữa bột Vianmilk Organic Gold là sản phẩm dinh dưỡng siêu cao cấp đạt chứng nhận Organic Châu Âu, với 100% nguyên liệu bột sữa ORGANIC nhập khẩu từ New Zealand và Châu Âu.\r\nSữa có vị nhạt thanh mát, phù hợp cho hệ tiêu hóa còn non nớt của trẻ. Đồng thời bổ sung 100% DHA từ tảo tinh khiết cùng Probiotics BB-12TM giúp phát triển trí não và hỗ trợ tiêu hóa, cân bằng hệ vi sinh đường ruột và tăng cường hấp thu dưỡng chất.",
+        "category": [
+            4
+        ]
+    }
+]

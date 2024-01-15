@@ -1,0 +1,37 @@
+[
+    {
+        "product": {
+            "name": "Sữa Need Milk Shake Dứa",
+            "price": 5.0
+        },
+        "quantity": 1
+    },
+    {
+        "product": {
+            "name": "Sữa Grow Plus đỏ Nutifood",
+            "price": 320.0
+        },
+        "quantity": 1
+    },
+    {
+        "product": {
+            "name": "Sữa Colosbaby",
+            "price": 400.0
+        },
+        "quantity": 1
+    },
+    {
+        "product": {
+            "name": "Sữa Optimum",
+            "price": 300.0
+        },
+        "quantity": 1
+    },
+    {
+        "product": {
+            "name": "Sữa Gold Care",
+            "price": 300.0
+        },
+        "quantity": 2
+    }
+]

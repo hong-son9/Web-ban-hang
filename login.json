@@ -1,0 +1,130 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "username": "admin",
+            "password": "pbkdf2_sha256$600000$zbrqoptBOLga1Sz8kEZuzl$pyTXztGGz1gK8FooD3shrrNX+WqQaB8o/TysP5DA0gM=",
+            "email": "phihongson15102002@gmail.com"
+        },
+        {
+            "id": 18,
+            "username": "phs",
+            "password": "pbkdf2_sha256$600000$53TQEFE1vnvaeOf9DYqdo1$YDezwLipgtUIP/zkH4o5cccWvQqRjhfsrt2yBQF6IYg=",
+            "email": "s@gmail.com"
+        },
+        {
+            "id": 19,
+            "username": "phs1",
+            "password": "pbkdf2_sha256$600000$OtsebWfkQMeCnVZ17MZT20$UmINa5AKsBvzY2R7QNant7wjcG8wyoWs5c6nozd4MF8=",
+            "email": "s@gmail.com"
+        },
+        {
+            "id": 20,
+            "username": "phs2",
+            "password": "pbkdf2_sha256$600000$DVh4kyC9Vwt8wFZADuUfSi$JqtrtgDrfPKvXdDT+tGMuk8J/RZkw63GyKdVNH5S0xs=",
+            "email": "s@gmail.com"
+        },
+        {
+            "id": 21,
+            "username": "phs3",
+            "password": "pbkdf2_sha256$600000$FgjMZdvqGGpuxMjSe3iCEh$OgxNbr48Glz5pSlEJxpu9Aknm4CiaYxJyyWs8TEnzKA=",
+            "email": "s@gmail.com"
+        },
+        {
+            "id": 22,
+            "username": "phs4",
+            "password": "pbkdf2_sha256$600000$1Ow5YTjNbFDQEmsxTTKB9n$m+bfy64RNcjDeZzlyt+eoRwvRa532v9SnD/aCF0CigE=",
+            "email": "s@gmail.com"
+        },
+        {
+            "id": 23,
+            "username": "son",
+            "password": "pbkdf2_sha256$600000$m7sE3EPqDs2EtXrfYucvzt$Sd/A2cBOnuCo7gR/1U88hyJwWaXohDbr+NBsZGJTJ88=",
+            "email": "s@gmail.com"
+        },
+        {
+            "id": 24,
+            "username": "phihongson",
+            "password": "pbkdf2_sha256$600000$5nHPWphVGtRF7pqJlGGWl3$NeVT4TDkvw0B3sxFRRoAk5Davz+9lLMwo2zyup0SXKw=",
+            "email": "hongson15102002@gmail.com"
+        },
+        {
+            "id": 25,
+            "username": "sonlon",
+            "password": "pbkdf2_sha256$600000$caPx2xXEZDebyLVHseMW3l$AIX9kFjWQN2pyp+Q+PfQKDP96S0WEYcMZg/Gb8Dyah0=",
+            "email": "s@gmail.com"
+        },
+        {
+            "id": 26,
+            "username": "s1",
+            "password": "pbkdf2_sha256$600000$ewZ63c03yiWXyfGVlaEpex$iHemL/rweuZQiCFpp/KWHHUbvzKBS7QqKUyeOQdhUdk=",
+            "email": "hongson15102002@gmail.com"
+        },
+        {
+            "id": 27,
+            "username": "s2",
+            "password": "pbkdf2_sha256$600000$UTkqkmYK8lGX4TGNALkSk5$jW1MHAONmrUUmDZlMWwYMIvEQhE8aSjpu+Bz9eHDefI=",
+            "email": "s@gmail.com"
+        },
+        {
+            "id": 28,
+            "username": "son111",
+            "password": "pbkdf2_sha256$600000$2wtVtsIT6RJUnkukEsMoqF$2XAKqYA7NLsJEaWsNdL2BJfqqwmPcf2R3JAbxKKN4MY=",
+            "email": "a@gmail.com"
+        },
+        {
+            "id": 29,
+            "username": "sonabc",
+            "password": "pbkdf2_sha256$600000$GJPFQIqf0mR1rfgsRBBHeO$/8uVF5ezn7X0SAnMA3P6MQcrtbihbwbYdtKn5Up0/JI=",
+            "email": "s@gmail.com"
+        },
+        {
+            "id": 30,
+            "username": "test_user",
+            "password": "pbkdf2_sha256$600000$OicaoOtzdVF66bd7wwfTKL$BVnFf6O2u6bU07jtfl/1TXVo9VnuTQulqvuIl+tlr5Q=",
+            "email": ""
+        },
+        {
+            "id": 31,
+            "username": "son9",
+            "password": "pbkdf2_sha256$600000$AzwWR7SoYfETuM9l49cXKN$RsLbzXpbokuThtLM4BcGFekC+nAKCbE36zLTIrpoMIs=",
+            "email": "s@gmail.com"
+        },
+        {
+            "id": 32,
+            "username": "testuser",
+            "password": "pbkdf2_sha256$600000$yfNK31sAyZ6VyT0V4fwGhT$tTZJSQr5vTbXvnBAVSZ/GU8cCu9E8PLqpT67hpxzeRg=",
+            "email": ""
+        },
+        {
+            "id": 33,
+            "username": "testuser1",
+            "password": "pbkdf2_sha256$600000$rukPewe5FdscGoYSxD7wV9$giVsDxtw+rYA5iel9iShYL0FayrXorlIJ3NgjrYX1zI=",
+            "email": ""
+        },
+        {
+            "id": 34,
+            "username": "testuser2",
+            "password": "pbkdf2_sha256$600000$0vw7Sinn5KvXO5ZL3qmVmP$bdGYA+iK1Y2AdxZOh7unPKwEkuLzfGf4oVXqDR1a5qY=",
+            "email": ""
+        },
+        {
+            "id": 35,
+            "username": "sonha",
+            "password": "",
+            "email": "s@gmail.com"
+        },
+        {
+            "id": 36,
+            "username": "cong",
+            "password": "",
+            "email": "s@gmail.com"
+        },
+        {
+            "id": 37,
+            "username": "cong1",
+            "password": "pbkdf2_sha256$600000$pmQkTGhaeQUWeNiJQFxVtQ$SbszTefw5DFT4RYFz6rj7N6VZ74r6axm+OpZkEyW0C4=",
+            "email": "s@gmail.com"
+        }
+    ]
+}

@@ -157,7 +157,7 @@ body {
   <!--<div class="container"><-->
         <!--Header-->
 <nav class="navbar navbar-expand-lg bg-body-tertiary" >
-  <div class="container-fluid" style="background-image: linear-gradient(-90deg, #d38312, #a83279); color: white;">
+  <div class="container-fluid" style="background-image: linear-gradient(-90deg, #d38312, #a83279); color: white; border-radius: 15px;">
     <a class="navbar-brand" href="{% url 'home' %}">
         <img src="{% static 'images/logo1.png' %} " width="55" height="55">
     </a>
@@ -203,12 +203,12 @@ body {
       <form class="d-flex" method="POST" action="{% url 'search' %}">
         {% csrf_token %}
         <input class="form-control me-2" name="searched" type="search" placeholder="Bạn tìm gì ...." aria-label="Search">
-        <button style="color: white; white-space: nowrap;" class="btn btn-outline-success" type="submit">Tìm kiếm</button>
+        <button style="color: white; white-space: nowrap; border-radius: 5px;" class="btn btn-outline-success" type="submit">Tìm kiếm</button>
       </form>
             <div class="navbar-nav me-auto mb-2 mb-lg-0" style="display: flex; align-items: center;">
-      <div style="margin-left: 15px; visibility:{{user_login}};">
+      <a style="margin-left: 15px; visibility:{{user_login}}; text-decoration: none; color: white; " href="{% url 'profile' %}">
         Xin chào {{request.user}}
-      </div>
+      </a>
       <div style="margin-right: 10px; visibility:{{user_login}};">
         <a style="margin-left: 20px; text-decoration: none; color: white;" href="{% url 'logout' %}">Đăng xuất</a>
       </div>
@@ -245,6 +245,7 @@ body {
     {% block content_checkout %} {% endblock content_checkout %}
     <!--Giao diện register-->
     {% block register %} {% endblock register %}
+    {% block change_account %} {% endblock change_account %}
     <!--Giao diện login-->
     {% block login %} {% endblock login %}
     <!-- Giao diện search -->
@@ -257,7 +258,10 @@ body {
     {% block pay %} {% endblock pay %}
     <!-- Giao diện sidebar -->
     {% block sidebar %} {% endblock sidebar %}
-        {% block zalo %} {% endblock zalo %}
+    {% block zalo %} {% endblock zalo %}
+     <!--Giao diện thông tin cá nhân -->
+     {% block profile %} {% endblock profile %}
+
     </div>
   <!--</div><-->
     <!-- Footer -->

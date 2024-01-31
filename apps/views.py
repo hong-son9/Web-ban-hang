@@ -124,6 +124,36 @@ def logout_account(request):
         #Xủ lí thoát
         logout(request)
         return redirect('login')
+def profile(request):
+        if request.user.is_authenticated:
+                customer = request.user
+                # Lấy và tạo order
+                order, created = Order.objects.get_or_create(customer=customer, complete=False)
+                # Truy cập all đơn hàng đã đặt
+                items = order.orderitem_set.all()
+                cartItems = order.get_cart_items
+                user_not_login = "hidden"
+                user_login = "show"
+
+        else:
+                items = []
+                order = {'get_cart_items': 0, 'get_cart_total': 0}
+                cartItems = order['get_cart_items']
+                user_not_login = "show"
+                user_login = "hidden"
+        categories = Category.objects.filter(is_sub=False)
+        # Ng dùng chọn
+        active_category = request.GET.get('category', '')
+        #Lấy all sản phầm
+        products = Product.objects.all()
+        context = {
+                'products': products,
+                'cartItems': cartItems,
+                'user_not_login': user_not_login,
+                'user_login': user_login,
+                'categories': categories,
+        }
+        return render(request, 'app/profile.html', context)
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
 def home_api(request, product_id=None):
         if request.user.is_authenticated:
@@ -179,12 +209,39 @@ def home(request):
         }
         return render(request, 'app/home.html', context)
 
-
-@api_view(['GET', 'POST', 'PUT', 'DELETE'])
-def cart_api(request, item_id = None):
+def cart(request):
+        #Xác thực user
         if request.user.is_authenticated:
                 customer = request.user
-
+                #Lấy và tạo order
+                order, created = Order.objects.get_or_create(customer=customer, complete=False)
+                #Truy cập all đơn hàng đã đặt
+                items = order.orderitem_set.all()
+                cartItems = order.get_cart_items
+                user_not_login = "hidden"
+                user_login = "show"
+        else:
+                items = []
+                order = {'get_cart_items': 0, 'get_cart_total': 0}
+                cartItems = order['get_cart_items']
+                user_not_login = "show"
+                user_login = "hidden"
+        categories = Category.objects.filter(is_sub=False)
+        # Ng dùng chọn
+        active_category = request.GET.get('category', '')
+        context = {
+                'items': items,
+                'order': order,
+                'cartItems': cartItems,
+                'user_not_login': user_not_login,
+                'user_login': user_login,
+                'categories': categories,
+        }
+        return render(request, 'app/cart.html', context)
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
+def cart_api(request, item_id=None):
+        if request.user.is_authenticated:
+                customer = request.user
                 order, created = Order.objects.get_or_create(customer=customer, complete=False)
                 items = order.orderitem_set.all()
                 if request.method == 'GET':
@@ -223,36 +280,6 @@ def cart_api(request, item_id = None):
 
         else:
                 return Response({'error': 'User not authenticated'}, status=status.HTTP_401_UNAUTHORIZED)
-
-def cart(request):
-        #Xác thực user
-        if request.user.is_authenticated:
-                customer = request.user
-                #Lấy và tạo order
-                order, created = Order.objects.get_or_create(customer=customer, complete=False)
-                #Truy cập all đơn hàng đã đặt
-                items = order.orderitem_set.all()
-                cartItems = order.get_cart_items
-                user_not_login = "hidden"
-                user_login = "show"
-        else:
-                items = []
-                order = {'get_cart_items': 0, 'get_cart_total': 0}
-                cartItems = order['get_cart_items']
-                user_not_login = "show"
-                user_login = "hidden"
-        categories = Category.objects.filter(is_sub=False)
-        # Ng dùng chọn
-        active_category = request.GET.get('category', '')
-        context = {
-                'items': items,
-                'order': order,
-                'cartItems': cartItems,
-                'user_not_login': user_not_login,
-                'user_login': user_login,
-                'categories': categories,
-        }
-        return render(request, 'app/cart.html', context)
 def checkout(request):
         if request.user.is_authenticated:
                 customer = request.user

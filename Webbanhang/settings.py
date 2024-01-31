@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps',
     'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +79,12 @@ WSGI_APPLICATION = 'Webbanhang.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+        #'ENGINE': 'django.db.backends.mysql',
         'NAME': BASE_DIR / 'db.sqlite3',
+        #'NAME': 'webbanhang',
+        #'USER': 'root',
+       # 'PASSWORD': '12345',
+        #'HOST': '1',
     }
 }
 
@@ -133,7 +139,12 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'), #có thể bỏ
+    #os.path.join(BASE_DIR, 'static'), #có thể bỏ
 ]
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'apps/static/images')
+#REST_FRAMEWORK = {
+#    'DEFAULT_AUTHENTICATION_CLASSES': (
+#        'rest_framework_simplejwt.authentication.JWTAuthentication',
+#    )
+#}

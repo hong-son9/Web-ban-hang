@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change Profile</title>
-</head>
-<body>
+{% extends 'app/base.html' %}
+{% load static %}
+{% block change_account %}
 
 <h2>Change Profile</h2>
 
@@ -16,5 +11,4 @@
     <button type="submit">Save Changes</button>
 </form>
 
-</body>
-</html>
+{% endblock change_account %}

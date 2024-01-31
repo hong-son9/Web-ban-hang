@@ -16,7 +16,9 @@
                     <div class="col-md-6">
                         <div class="product p-4">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center"> <i class="fa fa-long-arrow-left"></i> <span class="ml-1"> <a href="{% url 'home' %}" style="text-decoration: none;">&#x2190; Back</a></span> </div> <i class="fa fa-shopping-cart text-muted"></i>
+                                <div class="d-flex align-items-center"> <i class="fa fa-long-arrow-left"></i> <span class="ml-1">
+                                    <a href="{% url 'home' %}" style="text-decoration: none;">&#x2190; Back</a></span> </div>
+                                <i class="fa fa-shopping-cart text-muted"></i>
                             </div>
                                 <h5 class="text-uppercase">Tên: {{product.name}}</h5>
                                 <div class="price d-flex flex-row align-items-center"> <span class="act-price">Giá: {{product.price}} VND</span>
@@ -24,7 +26,9 @@
                             </div>
                             <p class="about">{{product.detail}}</p>
                             <div class="cart mt-4 align-items-center">
-                                <button class="btn btn-danger text-uppercase mr-2 px-4 add-btn update-cart" data-product={{product.id}} data-action ="add">Thêm vào giỏ hàng</button> <i class="fa fa-heart text-muted" class="heart" id="heart"></i> <i class="fa fa-share-alt text-muted"></i> </div>
+                                <button class="btn btn-danger text-uppercase mr-2 px-4 add-btn update-cart" data-product={{product.id}} data-action ="add" style="border-radius: 5px;">Thêm vào giỏ hàng</button>
+                                <i class="fa fa-heart text-muted" class="heart" id="heart"></i>
+                                <i class="fa fa-share-alt text-muted"></i> </div>
                         </div>
                     </div>
                 </div>
@@ -32,5 +36,6 @@
         </div>
     </div>
 </div>
+
         {% endfor %}
         {% endblock detail %}

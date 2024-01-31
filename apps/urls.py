@@ -1,12 +1,19 @@
 from django.contrib import admin
 from django.urls import path
 from . import views
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 urlpatterns = [
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('register/', views.register, name='register'),
     path('change_account', views.change_account, name="change_account"),
     path('register_api/', views.register_api, name='register_api'),
     path('forget_pass/', views.forgetpass, name='forget_pass'),
     path('login/', views.login_account, name='login'),
+    path('profile/', views.profile, name='profile'),
     path('search/', views.search, name='search'),
     path('logout/', views.logout_account, name='logout'),
     path('', views.home, name='home'),
@@ -18,9 +25,5 @@ urlpatterns = [
     path('category/', views.category, name='category'),
     path('detail/', views.detail, name='detail'),
     path('hotline/', views.hotline, name='hotline'),
-
-
-
-
 
 ]

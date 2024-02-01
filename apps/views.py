@@ -124,35 +124,49 @@ def logout_account(request):
         #Xủ lí thoát
         logout(request)
         return redirect('login')
+
+
 def profile(request):
+        form = CreateUserForm()
+        user_not_login = "hidden"
+        user_login = "show"
+
         if request.user.is_authenticated:
                 customer = request.user
-                # Lấy và tạo order
                 order, created = Order.objects.get_or_create(customer=customer, complete=False)
-                # Truy cập all đơn hàng đã đặt
                 items = order.orderitem_set.all()
                 cartItems = order.get_cart_items
-                user_not_login = "hidden"
-                user_login = "show"
 
+                # Add user information to the context
+                user_info = {
+                        'username': customer.username,
+                        'email': customer.email,
+                        'password': customer.password,
+
+
+                }
         else:
                 items = []
                 order = {'get_cart_items': 0, 'get_cart_total': 0}
                 cartItems = order['get_cart_items']
+                user_info = None
                 user_not_login = "show"
                 user_login = "hidden"
+
         categories = Category.objects.filter(is_sub=False)
-        # Ng dùng chọn
         active_category = request.GET.get('category', '')
-        #Lấy all sản phầm
         products = Product.objects.all()
+
         context = {
+                'form': form,
                 'products': products,
                 'cartItems': cartItems,
                 'user_not_login': user_not_login,
                 'user_login': user_login,
                 'categories': categories,
+                'user_info': user_info,  # Add user_info to the context
         }
+
         return render(request, 'app/profile.html', context)
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
 def home_api(request, product_id=None):

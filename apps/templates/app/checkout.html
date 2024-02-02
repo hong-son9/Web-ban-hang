@@ -191,17 +191,24 @@
                                     value="1">
                                 <label class="custom-control-label" for="httt-1">Thanh toán khi nhận hàng</label>
                             </div>
-                            <div class="custom-control custom-radio">
+                            <div>
+                                <input id="httt-2" name="httt_ma" type="radio" class="custom-control-input" required=""
+                                    value="2">
+                                <a href="{% url 'payment' %}" style="text-decoration: none; color: black; " class="custom-control-label" for="httt-2">Thanh toán bằng thẻ ngân hàng</a>
+                            </div>
+                            <!--<div class="custom-control custom-radio">
                                 <input id="httt-2" name="httt_ma" type="radio" class="custom-control-input" required=""
                                     value="2">
                                 <label class="custom-control-label" for="httt-2">Thanh toán bằng thẻ ngân hàng</label>
-                            </div>
+                            </div> -->
                         </div>
                         <hr class="mb-4">
                         <button class="btn btn-primary btn-lg btn-block" type="submit" id="btnDatHang" name="btnDatHang">&#x2190; Đặt
                             hàng</button>
+
                     </div>
                 </div>
+
             </form>
 
          <div id="payment-form" style="display: none;" class="col-md-7 order-md-1">

@@ -531,9 +531,15 @@ def hmacsha512(key, data):
     byteData = data.encode('utf-8')
     return hmac.new(byteKey, byteData, hashlib.sha512).hexdigest()
 
-
+def get_cart_total(request):
+        if request.user.is_authenticated:
+                customer = request.user
+                order, created = Order.objects.get_or_create(customer=customer, complete=False)
+                total = order.get_cart_total()
+                return JsonResponse({'total': total})
+        else:
+                return JsonResponse({'error': 'User is not authenticated'})
 def payment(request):
-
     if request.method == 'POST':
         # Process input data and build url payment
         form = PaymentForm(request.POST)

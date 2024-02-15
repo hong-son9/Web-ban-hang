@@ -32,4 +32,5 @@ urlpatterns = [
     path('payment_return', views.payment_return, name='payment_return'),
     path('query', views.query, name='query'),
     path('refund', views.refund, name='refund'),
+    path('total', views.get_cart_total, name='total'),
 ]

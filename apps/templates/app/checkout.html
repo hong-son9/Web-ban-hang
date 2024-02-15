@@ -113,6 +113,43 @@
         background-color: red;
         color:white;
      }
+     .confirmation-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            max-width: 300px;
+            text-align: center;
+     }
+        /* Thiết lập kiểu CSS cho nút trong hộp thoại */
+     .confirmation-box button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+     }
+        /* Màu cho nút Hủy */
+     #cancelButton {
+            background-color: #e74c3c;
+            color: #fff;
+     }
+        /* Màu cho nút Đồng ý */
+     #confirmButton {
+            background-color: #2ecc71;
+            color: #fff;
+     }
+        /* Hover effect */
+     .confirmation-box button:hover {
+            opacity: 0.9;
+     }
 </style>
      <main role="main">
         <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
@@ -157,8 +194,18 @@
                             </li>
                             </div>
                         </ul>
+
+
+
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Mã khuyến mãi">
+                            <select name="order_type" id="order_type" class="form-control">
+                                <option value="" disabled selected style="display:none;">Mã khuyến mãi</option>
+                                <option value="billpayment">Free Ship</option>
+                                <option value="topup">Giam 5%</option>
+                                <option value="fashion">Giam 10k</option>
+                                <option value="other">Giam 15%</option>
+                            </select>
+
                             <div class="input-group-append">
                                 <button type="submit" style="margin-left: 10px; margin-top: 5px;" class="btn btn-secondary " id="btn-xn">Xác nhận</button>
                             </div>
@@ -191,48 +238,56 @@
                                     value="1">
                                 <label class="custom-control-label" for="httt-1">Thanh toán khi nhận hàng</label>
                             </div>
-                            <div>
+
+                            <div class="custom-control custom-radio">
                                 <input id="httt-2" name="httt_ma" type="radio" class="custom-control-input" required=""
                                     value="2">
-                                <a href="{% url 'payment' %}" style="text-decoration: none; color: black; " class="custom-control-label" for="httt-2">Thanh toán bằng thẻ ngân hàng</a>
+                                <label class="custom-control-label" for="httt-2">Thanh toán bằng thẻ ngân hàng VnPay</label>
                             </div>
-                            <!--<div class="custom-control custom-radio">
-                                <input id="httt-2" name="httt_ma" type="radio" class="custom-control-input" required=""
-                                    value="2">
-                                <label class="custom-control-label" for="httt-2">Thanh toán bằng thẻ ngân hàng</label>
-                            </div> -->
                         </div>
                         <hr class="mb-4">
-                        <button class="btn btn-primary btn-lg btn-block" type="submit" id="btnDatHang" name="btnDatHang">&#x2190; Đặt
+                        <button class="btn btn-primary btn-lg btn-block" onclick="handlePaymentMethod()" type="submit" id="btnDatHang" name="btnDatHang">&#x2190; Đặt
                             hàng</button>
-
                     </div>
                 </div>
-
             </form>
-
-         <div id="payment-form" style="display: none;" class="col-md-7 order-md-1">
-      <h4>Nhập thông tin Ngân Hàng của bạn</h4>
-      <div class="form-group">
-        <label for="bank-name">Tên ngân hàng:</label>
-        <input type="text" class="form-control" id="bank-name" required>
-      </div>
-      <div class="form-group">
-        <label for="account-number">Số tài khoản:</label>
-        <input type="text" class="form-control" id="account-number" required>
-      </div>
-      <div class="form-group">
-        <label for="pin">Mã PIN:</label>
-        <input type="password" class="form-control" id="pin" required>
-      </div>
-      <button onclick="showSuccessMessage()" class="btn btn-primary btn-lg btn-block" id="pay-with-card-btn">&#x2190; Thanh toán bằng thẻ ngân hàng</button>
-    </div>
         </div>
         <!-- End block content -->
     </main>
+    <div class="confirmation-box" style="display: none;">
+    <p>Bạn có muốn đặt hàng không?</p>
+    <!-- Nút Hủy -->
+    <button id="cancelButton">Hủy</button>
+    <!-- Nút Đồng ý -->
+    <button id="confirmButton">Đồng ý</button>
+</div>
 
+<script>
+    // Lấy tham chiếu đến các nút trong hộp thoại
+    var cancelButton = document.getElementById("cancelButton");
+    var confirmButton = document.getElementById("confirmButton");
 
+    // Bắt sự kiện click cho nút Hủy
+    cancelButton.addEventListener("click", function() {
+        // Đóng hộp thoại
+        closeConfirmationBox();
+    });
 
+    // Bắt sự kiện click cho nút Đồng ý
+    confirmButton.addEventListener("click", function() {
+        // Gọi hàm xử lý khi người dùng đồng ý đặt hàng
+        handleOrderConfirmation();
+    });
+
+    // Hàm đóng hộp thoại
+    function closeConfirmationBox() {
+        var confirmationBox = document.querySelector(".confirmation-box");
+        confirmationBox.style.display = "none";
+    }
+
+    // Hàm xử lý việc đồng ý đặt hàng
+
+</script>
     <div class="overlay">
       <div class="centered-container">
         <i class="fas fa-check-circle checkmark-icon"></i>
@@ -243,51 +298,68 @@
 
 <script>
     document.getElementById("btnDatHang").addEventListener("click", function(event) {
-        event.preventDefault(); // Ngăn chặn gửi form mặc định
-        // Kiểm tra các trường thông tin nhận hàng
-        var name = document.querySelector('input[name="name"]').value;
-        var address = document.querySelector('input[name="address"]').value;
-        var phone = document.querySelector('input[name="phone"]').value;
-        var email = document.querySelector('input[name="email"]').value;
+    event.preventDefault(); // Ngăn chặn gửi form mặc định
 
-        // Nếu các trường thông tin đã được nhập, hiển thị thông báo
-        if (name && address && phone && email) {
-            // Kiểm tra phương thức thanh toán và hiển thị giao diện tương ứng
-            showPaymentForm();
-        } else {
-            // Nếu các trường thông tin chưa được nhập, hiển thị thông báo
-            alert("Vui lòng nhập đầy đủ thông tin nhận hàng trước khi đặt hàng.");
-        }
-    });
+    // Kiểm tra các trường thông tin nhận hàng
+    var name = document.querySelector('input[name="name"]').value;
+    var address = document.querySelector('input[name="address"]').value;
+    var phone = document.querySelector('input[name="phone"]').value;
+    var email = document.querySelector('input[name="email"]').value;
+
+    // Nếu các trường thông tin đã được nhập, hiển thị thông báo
+    if (name && address && phone && email) {
+        // Kiểm tra phương thức thanh toán và hiển thị giao diện tương ứng
+        handlePaymentMethod();
+    } else {
+        // Nếu các trường thông tin chưa được nhập, hiển thị thông báo
+        alert("Vui lòng nhập đầy đủ thông tin nhận hàng trước khi đặt hàng.");
+    }
+});
+
     // Hàm kiểm tra phương thức thanh toán và hiển thị giao diện tương ứng
-    function showPaymentForm() {
-        // Lấy giá trị của phương thức thanh toán được chọn
-        var paymentMethod = document.querySelector('input[name="httt_ma"]:checked').value;
+    function handlePaymentMethod() {
+            // Lấy giá trị của phương thức thanh toán được chọn
+            var paymentMethod = document.querySelector('input[name="httt_ma"]:checked').value;
 
-        // Kiểm tra nếu phương thức thanh toán là 2 (thanh toán bằng thẻ ngân hàng)
-        if (paymentMethod === '2') {
-            // Hiển thị giao diện thanh toán bằng thẻ ngân hàng (ví dụ)
-            var paymentForm = document.getElementById('payment-form');
-            paymentForm.style.display = 'block';
+            if (paymentMethod === '2') {
+                // Thực hiện chuyển hướng đến URL mới khi chọn thanh toán bằng thẻ ngân hàng
+                window.location.href = '{% url "payment" %}';
+            } else {
+                // Hiển thị lớp overlay và thông báo đặt hàng thành công
+                var confirmationBox = document.querySelector('.confirmation-box');
+                confirmationBox.style.display = "block";
 
-        } else {
-            // Nếu không chọn thanh toán bằng thẻ ngân hàng, ẩn giao diện thanh toán bằng thẻ
-            var paymentForm = document.getElementById('payment-form');
-            paymentForm.style.display = 'none';
+                // Add event listeners to the buttons
+                var cancelButton = document.getElementById('cancelButton');
+                var confirmButton = document.getElementById('confirmButton');
 
-            // Hiển thị lớp overlay và thông báo đặt hàng thành công
+                cancelButton.addEventListener('click', function() {
+                    // Hide confirmation box if canceled
+                    confirmationBox.style.display = "none";
+                });
+
+                confirmButton.addEventListener('click', function() {
+                    // Display success message if confirmed
+                    showSuccessMessage();
+                    // Additional logic to submit the form or process the order can be added here
+                    // Hide confirmation box
+                    confirmationBox.style.display = "none";
+                });
+            }
+        }
+        // Hàm hiển thị thông báo đặt hàng thành công
+        function showSuccessMessage() {
             var overlay = document.querySelector(".overlay");
             overlay.style.display = "flex";
         }
-    }
-    function showSuccessMessage() {
-        var overlay = document.querySelector(".overlay");
-        overlay.style.display = "flex";
-    }
-    // Hàm ẩn thông báo đặt hàng thành công
-    function hideSuccessMessage() {
-        var overlay = document.querySelector(".overlay");
-        overlay.style.display = "none";
-    }
+
+        // Hàm ẩn thông báo đặt hàng thành công
+        function hideSuccessMessage() {
+            var overlay = document.querySelector(".overlay");
+            overlay.style.display = "none";
+        }
 </script>
+
+
+
 {% endblock content_checkout %}

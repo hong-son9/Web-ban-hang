@@ -3,29 +3,50 @@
 
     <h3>{{ title }}</h3>
     <div class="table-responsive">
-        <form action="{% url "payment" %}" id="create_form" method="post">
+        <form action="{% url 'payment' %}" id="create_form" method="post">
             <div class="form-group">
                 <label for="language">Loại hàng hóa </label>
                 <select name="order_type" id="order_type" class="form-control">
-                    <option value="topup">Nạp tiền điện thoại</option>
                     <option value="billpayment">Thanh toán hóa đơn</option>
+                    <option value="topup">Nạp tiền điện thoại</option>
                     <option value="fashion">Thời trang</option>
                     <option value="other">Khác - Xem thêm tại VNPAY</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="order_id">Mã hóa đơn</label>
+                <label for="order_id" >Mã hóa đơn</label>
                 <input class="form-control" id="order_id"
-                       name="order_id" type="text" value="{% now "YmdHis" %}"/>
+                       name="order_id" type="text" value="{% now 'YmdHis' %}" readonly style="background-color: white;"/>
             </div>
             <div class="form-group">
-                <label for="amount">Số tiền</label>
-                <input class="form-control" id="amount"
-                       name="amount" type="number" value="10000"/>
-            </div>
+    <label for="amount">Số tiền</label>
+    <input class="form-control" id="amount" name="amount" type="number" value="100000" readonly style="background-color: white;">
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- Thêm thẻ script này để sử dụng jQuery -->
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: "/get_cart_total/",
+            success: function(data) {
+                if (data.total) {
+                    $('#amount').val(data.total);
+                } else {
+                    console.log(data.error);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
+        });
+    });
+</script>
+
+
             <div class="form-group">
                 <label for="order_desc">Nội dung thanh toán</label>
-                <textarea class="form-control" cols="20" id="order_desc" name="order_desc" rows="2">Thanh toan don hang thoi gian: {% now "Y-m-d H:i:s" %}</textarea>
+                <textarea class="form-control" cols="20" id="order_desc" name="order_desc" rows="2" readonly style="background-color: white;">Thanh toan don hang thoi gian: {% now "Y-m-d H:i:s" %}</textarea>
             </div>
             <div class="form-group">
                 <label for="bank_code">Ngân hàng</label>

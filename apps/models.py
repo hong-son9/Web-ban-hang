@@ -67,7 +67,7 @@ class Order(models.Model):
     complete = models.BooleanField(default=False, null=True, blank=False)
     transaction_id = models.CharField(max_length=255, null=True)
     def __str__(self):
-        return str(self.id)
+        return str(self.customer)
     #Tính tổng item
     @property
     def get_cart_items(self):

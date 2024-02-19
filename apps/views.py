@@ -87,6 +87,8 @@ def register_api(request, user_id=None):
 
 
 def register(request):
+        order = {'get_cart_items': 0, 'get_cart_total': 0}
+        cartItems = order['get_cart_items']
         # Xử dụng form của Django
         form = CreateUserForm()
         if request.method == 'POST':
@@ -98,10 +100,22 @@ def register(request):
         context = {
                 'form': form,
                 'user_login': 'hidden',
+                'cartItems': cartItems,
         }
         return render(request, 'app/register.html', context)
 
 def change_account(request):
+        if request.user.is_authenticated:
+                customer = request.user
+                # Lấy và tạo order
+                order, created = Order.objects.get_or_create(customer=customer, complete=False)
+                # Truy cập all đơn hàng đã đặt
+                items = order.orderitem_set.all()
+                cartItems = order.get_cart_items
+                user_not_login = "hidden"
+                user_login = "show"
+        categories = Category.objects.filter(is_sub=False)
+
         if request.method == 'POST':
                 form = ChangeUserProfileForm(request.POST, instance=request.user)
                 if form.is_valid():
@@ -111,12 +125,22 @@ def change_account(request):
         else:
                 form = ChangeUserProfileForm(instance=request.user)
 
-        context = {'form': form}
+        context = {'form': form,
+                   'cartItems': cartItems,
+                   'user_not_login': user_not_login,
+                   'user_login': user_login,
+                   'categories': categories,
+                   }
         return render(request, 'app/change_account.html', context)
 def login_account(request):
         #Xác thực người dùng
         if request.user.is_authenticated:
                 return redirect('home')
+        else:
+                items = []
+                order = {'get_cart_items': 0, 'get_cart_total': 0}
+                cartItems = order['get_cart_items']
+                user_info = None
         #Bắt tài khoản
         if request.method == 'POST':
                 username = request.POST.get('username')
@@ -128,10 +152,10 @@ def login_account(request):
                 else:
                         messages.info(request, 'Tài khoản hoặc mật khẩu không chính xác!!!')
         categories = Category.objects.filter(is_sub=False)
-
         context = {
                 'user_login': 'hidden',
-                'categories': categories
+                'categories': categories,
+                'cartItems': cartItems,
         }
         return render(request, 'app/login.html', context)
 def logout_account(request):
@@ -497,7 +521,14 @@ def hotline(request):
         }
         return render(request, 'app/hotline.html', context)
 def forgetpass(request):
-        # if request.method == 'POST':
+        if request.user.is_authenticated:
+                pass
+        else:
+                items = []
+                order = {'get_cart_items': 0, 'get_cart_total': 0}
+                cartItems = order['get_cart_items']
+                user_info = None
+
          #       email = request.POST.get('email')
           #      try:
           #              user = User.objects.get(email=email)
@@ -519,6 +550,7 @@ def forgetpass(request):
         context = {
                 'user_not_login': 'show',
                 'user_login': 'hidden',
+                'cartItems': cartItems,
         }
         return render(request, 'app/forget-password.html', context)
 

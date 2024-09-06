@@ -4,24 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <!-- css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link href="{% static 'app/css/all.min.css' %}" rel = "stylesheet" />
-    <link href="{% static 'app/css/owl.carousel.min.css' %}" rel = "stylesheet" />
-    <link href="{% static 'app/css/style.css' %}" rel = "stylesheet" />
-    <link href="{% static 'app/css/main.css' %}" rel = "stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="{% static 'app/css/all.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'app/css/owl.carousel.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'app/css/style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'app/css/main.css' %}" rel="stylesheet"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+            integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+            integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+            crossorigin="anonymous"></script>
     <script src="{% static 'app/js/all.min.js' %}"></script>
     <script src="{% static 'app/js/myscript.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAKlEJcWp5I5a5wE" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAKlEJcWp5I5a5wE"
+            crossorigin="anonymous"></script>
     <script type="text/javascript">
         var user = '{{request.user}}'
         function getCookie(name) {
@@ -40,6 +50,7 @@
     return cookieValue;
 }
 const csrftoken = getCookie('csrftoken');
+
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Bán Sữa Need Online</title>
@@ -151,44 +162,50 @@ body {
     border-radius: 10px;
     background-color: transparent !important;
 }
-  </style>
+
+</style>
 <body>
 
-  <!--<div class="container"><-->
-        <!--Header-->
-<nav class="navbar navbar-expand-lg bg-body-tertiary" >
-  <div class="container-fluid" style="background-image: linear-gradient(-90deg, #d38312, #a83279); color: white; border-radius: 15px;">
-    <a class="navbar-brand" href="{% url 'home' %}">
-        <img src="{% static 'images/logo1.png' %} " width="55" height="55">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a style="color: white" class="nav-link active" aria-current="page" href="{% url 'home' %}">Trang chủ</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a style="color: white" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Sản phẩm
-          </a>
-          <ul class="dropdown-menu">
-              {% for category in categories %}
-            <li><a class="dropdown-item" href="{% url 'category' %}?category={{category.slug}}">{{category.name}}</a></li>
-              {% endfor %}
-          </ul>
-        </li>
-          <li class="nav-item">
-          <a style="color: white" class="nav-link" href="{% url 'cart' %}">Đơn hàng</a>
-        </li>
-        <li class="nav-item">
-          <a style="color: white" class="nav-link" href="{% url 'hotline' %}">Liên hệ</a>
-        </li>
-          <button id="toggleDarkMode">
-            <i class="fas fa-adjust"></i>
+<!--<div class="container"><-->
+<!--Header-->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid"
+         style="background-image: linear-gradient(-90deg, #d38312, #a83279); color: white; border-radius: 15px;">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'images/logo1.png' %} " width="55" height="55">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-        <script>document.getElementById("toggleDarkMode").addEventListener("click", function() {
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a style="color: white" class="nav-link active" aria-current="page" href="{% url 'home' %}">Trang
+                        chủ</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a style="color: white" class="nav-link dropdown-toggle" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Sản phẩm
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% for category in categories %}
+                        <li><a class="dropdown-item" href="{% url 'category' %}?category={{category.slug}}">{{category.name}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a style="color: white" class="nav-link" href="{% url 'cart' %}">Đơn hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color: white" class="nav-link" href="{% url 'hotline' %}">Liên hệ</a>
+                </li>
+                <button id="toggleDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </button>
+                <script>document.getElementById("toggleDarkMode").addEventListener("click", function() {
         document.body.classList.toggle("dark-mode");
         if (document.body.classList.contains("dark-mode")) {
             document.documentElement.style.setProperty('--body-background', 'var(--background-color-dark)');
@@ -198,39 +215,46 @@ body {
             document.documentElement.style.setProperty('--body-color', 'var(--text-color-light)');
         }
     });
-        </script>
-      </ul>
-      <form class="d-flex" method="POST" action="{% url 'search' %}">
-        {% csrf_token %}
-        <input class="form-control me-2" name="searched" type="search" placeholder="Bạn tìm gì ...." aria-label="Search">
-        <button style="color: white; white-space: nowrap; border-radius: 5px;" class="btn btn-outline-success" type="submit">Tìm kiếm</button>
-      </form>
+
+                </script>
+            </ul>
+            <form class="d-flex" method="POST" action="{% url 'search' %}">
+                {% csrf_token %}
+                <input class="form-control me-2" name="searched" type="search" placeholder="Bạn tìm gì ...."
+                       aria-label="Search">
+                <button style="color: white; white-space: nowrap; border-radius: 5px;" class="btn btn-outline-success"
+                        type="submit">Tìm kiếm
+                </button>
+            </form>
             <div class="navbar-nav me-auto mb-2 mb-lg-0" style="display: flex; align-items: center;">
-      <a style="margin-left: 15px; visibility:{{user_login}}; text-decoration: none; color: white; " href="{% url 'profile' %}">
-        Xin chào {{request.user}}
-      </a>
-      <div style="margin-right: 10px; visibility:{{user_login}};">
-        <a style="margin-left: 20px; text-decoration: none; color: white;" href="{% url 'logout' %}">Đăng xuất</a>
-      </div>
-</div>
-      <div class="form-inline my-2 my-lg-0" style="visibility:{{user_not_login}}">
-          <a class="nav-link" style="color: white" href="{% url 'login' %}">Đăng Nhập</a>
-          <a class="nav-link" style="color: white" href="{% url 'register' %}">Đăng kí</a>
-      </div>
-      </ul>
-      <!-- số lượng hàng-->
-      <div class="form-inline my-2 my-lg-0">
-  <a href="{% url 'cart' %}" style="display: flex; align-items: center; text-decoration: none; color: black;">
-    <div style="position: relative; margin-right: 5px;">
-      <img id="cart-icon" src="{% static 'images/cart.png' %}" style="width: 30px; height: 30px;">
-      <div class="cart-items-badge">{{ cartItems }}</div>
+                <a style="margin-left: 15px; visibility:{{user_login}}; text-decoration: none; color: white; "
+                   href="{% url 'profile' %}">
+                    Xin chào {{request.user}}
+                </a>
+                <div style="margin-right: 10px; visibility:{{user_login}};">
+                    <a style="margin-left: 20px; text-decoration: none; color: white;" href="{% url 'logout' %}">Đăng
+                        xuất</a>
+                </div>
+            </div>
+            <div class="form-inline my-2 my-lg-0" style="visibility:{{user_not_login}}">
+                <a class="nav-link" style="color: white" href="{% url 'login' %}">Đăng Nhập</a>
+                <a class="nav-link" style="color: white" href="{% url 'register' %}">Đăng kí</a>
+            </div>
+            </ul>
+            <!-- số lượng hàng-->
+            <div class="form-inline my-2 my-lg-0">
+                <a href="{% url 'cart' %}"
+                   style="display: flex; align-items: center; text-decoration: none; color: black;">
+                    <div style="position: relative; margin-right: 5px;">
+                        <img id="cart-icon" src="{% static 'images/cart.png' %}" style="width: 30px; height: 30px;">
+                        <div class="cart-items-badge">{{ cartItems }}</div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
-  </a>
-</div>
-</div>
-  </div>
 </nav>
-    <div class="full">
+<div class="full">
     <!--Giao diện banner -->
     {% block banner_slider %} {% endblock banner_slider %}
     <!--Giao diện sản phẩm -->
@@ -249,7 +273,7 @@ body {
     <!--Giao diện login-->
     {% block login %} {% endblock login %}
     <!-- Giao diện search -->
-     {% block search %}  {% endblock search %}
+    {% block search %} {% endblock search %}
     <!--Giao diện forgetpassword -->
     {% block forgetpass %} {% endblock forgetpass %}
     <!--Giao diện hotline-->
@@ -259,48 +283,60 @@ body {
     <!-- Giao diện sidebar -->
     {% block sidebar %} {% endblock sidebar %}
     {% block zalo %} {% endblock zalo %}
-     <!--Giao diện thông tin cá nhân -->
-     {% block profile %} {% endblock profile %}
+    <!--Giao diện thông tin cá nhân -->
+    {% block profile %} {% endblock profile %}
 
-    </div>
-  <!--</div><-->
-    <!-- Footer -->
-    <footer style="background-color: #011C3A;"class="text-center text-white">
-  <!-- Grid container -->
-  <div class="container p-4 pb-0">
-    <!-- Section: Social media -->
-    <section class="mb-4">
-      <!-- Facebook -->
-      <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;" href="https://www.facebook.com/hongson.phi.7" role="button"
-        ><i class="fab fa-facebook-f"></i></a>
-      <!-- Youtube -->
-      <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;" href="https://www.youtube.com/channel/UC76VDqq9Dz_VApBJHG9Zdmg" role="button"
-        ><i class="fab fa-youtube"></i></a>
-        <!-- Message -->
-      <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;" href="https://www.messenger.com/t/100016363180729" role="button"
-        ><i class="fab fa-facebook-messenger"></i></a>
-      <!-- Google -->
-      <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;" href="https://www.google.com.vn/?hl=vi" role="button"
-        ><i class="fab fa-google"></i></a>
-      <!-- Instagram -->
-      <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;" href="https://www.instagram.com/hongsonphi/" role="button"
-        ><i class="fab fa-instagram"></i></a>
-      <!-- Github -->
-      <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;" href="https://github.com/hong-son9" role="button"
-        ><i class="fab fa-github"></i></a>
-        <!-- Zalo -->
-        <button onclick="show()" id="btnID" type="button" class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;">
-        <img src="{% static 'images/zalo3.png' %}" class="d-block w-100" style="width: 20px; height: 25px;" alt="Zalo">
-    </button>
+</div>
+<!--</div><-->
+<!-- Footer -->
+<footer style="background-color: #011C3A;" class="text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+            <!-- Facebook -->
+            <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;"
+               href="#" role="button"
+            ><i class="fab fa-facebook-f"></i></a>
+            <!-- Youtube -->
+            <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;"
+               href="#" role="button"
+            ><i class="fab fa-youtube"></i></a>
+            <!-- Message -->
+            <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;"
+               href="#" role="button"
+            ><i class="fab fa-facebook-messenger"></i></a>
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;"
+               href="#" role="button"
+            ><i class="fab fa-google"></i></a>
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;"
+               href="#" role="button"
+            ><i class="fab fa-instagram"></i></a>
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" style="border-radius: 5px;"
+               href="#" role="button"
+            ><i class="fab fa-github"></i></a>
+            <!-- Zalo -->
+            <button onclick="show()" id="btnID" type="button" class="btn btn-outline-light btn-floating m-1"
+                    style="border-radius: 5px;">
+                <img src="{% static 'images/zalo3.png' %}" class="d-block w-100" style="width: 20px; height: 25px;"
+                     alt="Zalo">
+            </button>
 
-    <div id="image-popup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); justify-content: center; align-items: center;">
-        <div style="position: relative;">
-            <img id="image" src="" style="max-width: 60%; max-height: 60vh;">
-            <button id="close-popup" style="position: absolute; top: 10px; right: 20px; font-size: 40px; background: none; border: none; color: white;">&times;</button>
-        </div>
-    </div>
-<!-- Xử lí tắt ảnh -->
-    <script>
+            <div id="image-popup"
+                 style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); justify-content: center; align-items: center;">
+                <div style="position: relative;">
+                    <img id="image" src="" style="max-width: 60%; max-height: 60vh;">
+                    <button id="close-popup"
+                            style="position: absolute; top: 10px; right: 20px; font-size: 40px; background: none; border: none; color: white;">
+                        &times;
+                    </button>
+                </div>
+            </div>
+            <!-- Xử lí tắt ảnh -->
+            <script>
         const popupTrigger = document.getElementById('btnID');
         const popupImage = document.getElementById('image');
         const imagePopup = document.getElementById('image-popup');
@@ -315,69 +351,73 @@ body {
         closePopup.addEventListener('click', function() {
             imagePopup.style.display = 'none';
         });
-    </script>
 
-    </section>
-    <!-- Section: Social media -->
-  </div>
-  <!-- Grid container -->
-  <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    <a>Milk provides protein, calcium, vitamin D. Calcium is needed to build and maintain strong bones, vitamin D helps the body absorb calcium from food. Therefore, milk is a food that helps improve bone density, reducing the risk of fractures in the elderly.</a>
-  </div>
-  <!-- Copyright -->
-<section class="">
-      <form action="">
-        <!--Grid row-->
-        <div class="row d-flex justify-content-center">
-          <!--Grid column-->
-          <div class="col-auto">
-            <p class="pt-2">
-              <strong>Sign up for our newsletter</strong>
-            </p>
-          </div>
-          <!--Grid column-->
-          <div class="col-md-5 col-12">
-            <!-- Email input -->
-            <div class="form-outline form-white mb-4">
-              <input type="email" id="form5Example21" class="form-control" />
-              <label class="form-label" for="form5Example21">Email address</label>
+            </script>
+
+        </section>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        <a>Milk provides protein, calcium, vitamin D. Calcium is needed to build and maintain strong bones, vitamin D
+            helps the body absorb calcium from food. Therefore, milk is a food that helps improve bone density, reducing
+            the risk of fractures in the elderly.</a>
+    </div>
+    <!-- Copyright -->
+    <section class="">
+        <form action="">
+            <!--Grid row-->
+            <div class="row d-flex justify-content-center">
+                <!--Grid column-->
+                <div class="col-auto">
+                    <p class="pt-2">
+                        <strong>Sign up for our newsletter</strong>
+                    </p>
+                </div>
+                <!--Grid column-->
+                <div class="col-md-5 col-12">
+                    <!-- Email input -->
+                    <div class="form-outline form-white mb-4">
+                        <input type="email" id="form5Example21" class="form-control"/>
+                        <label class="form-label" for="form5Example21">Email address</label>
+                    </div>
+                </div>
+                <!--Grid column-->
+                <div class="col-auto">
+                    <!-- Submit button -->
+                    <button type="submit" style="border-radius: 5px; margin-top: 5px;"
+                            class="btn btn-outline-light mb-4">
+                        Subscribe
+                    </button>
+                </div>
+                <!--Grid column-->
             </div>
-          </div>
-          <!--Grid column-->
-          <div class="col-auto">
-            <!-- Submit button -->
-            <button type="submit" style="border-radius: 5px; margin-top: 5px;" class="btn btn-outline-light mb-4">
-              Subscribe
-            </button>
-          </div>
-          <!--Grid column-->
-        </div>
-        <!--Grid row-->
-      </form>
+            <!--Grid row-->
+        </form>
     </section>
-         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
 
-             <div class="marquee">
-                 <a class="marquee-text1">Liên hệ: 0365454643 (Phí Hồng Sơn)</a>
-             </div>
-  </div>
-<!-- Footer -->
-        </footer>
-        <script src="{% static 'app/js/cart.js' %}"></script>
+        <div class="marquee">
+            <a class="marquee-text1">Liên hệ: 0365454643 (Phí Hồng Sơn)</a>
+        </div>
+    </div>
+    <!-- Footer -->
+</footer>
+<script src="{% static 'app/js/cart.js' %}"></script>
 
 
 <!--2 nút zalo + dienthoai -->
- <div class="zalo-button">
+<div class="zalo-button">
     <a href="https://zalo.me/0365454643">
-      <img src="{% static 'images/zalo3.png' %}" alt="Zalo">
+        <img src="{% static 'images/zalo3.png' %}" alt="Zalo">
     </a>
-  </div>
-   <div class="call-button">
+</div>
+<div class="call-button">
     <a href="tel:0365454643">
-      <img src="{% static 'app/images/dienthoai.jpg' %}" alt="Zalo">
+        <img src="{% static 'app/images/dienthoai.jpg' %}" alt="Zalo">
     </a>
-  </div>
+</div>
 <style>
 
 .zalo-button {
@@ -452,6 +492,7 @@ body {
   position: relative; /* Đảm bảo hình ảnh nằm trên đỉnh của đường viền */
   z-index: 1; /* Đảm bảo hình ảnh nằm trên đỉnh của đường viền */
 }
+
 
 </style>
 </body>

@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'django-insecure-agc*l$sqkh)xxq_10)930q)@5%lgmt5!7s662#fb^gywfqvzno
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -72,22 +70,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Webbanhang.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        #'ENGINE': 'django.db.backends.mysql',
+        # 'ENGINE': 'django.db.backends.mysql',
         'NAME': BASE_DIR / 'db.sqlite3',
-        #'NAME': 'webbanhang',
-        #'USER': 'root',
-       # 'PASSWORD': '12345',
-        #'HOST': '1',
+        # 'NAME': 'webbanhang',
+        # 'USER': 'root',
+        # 'PASSWORD': '12345',
+        # 'HOST': '1',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -99,19 +95,19 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ]
 # Cấu hình email
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#EMAIL_HOST = 'smtp.example.com'
-#EMAIL_PORT = 587
-#EMAIL_USE_TLS = True
-#EMAIL_HOST_USER = 'your_username'
-#EMAIL_HOST_PASSWORD = 'your_password'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.example.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'your_username'
+# EMAIL_HOST_PASSWORD = 'your_password'
 # settings.py
 
 # ...
 
-#try:
-  #  from local_settings import *
-#except ImportError:
+# try:
+#  from local_settings import *
+# except ImportError:
 #    pass
 
 # ...
@@ -127,10 +123,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
 
 
 # Default primary key field type
@@ -139,21 +133,20 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    #os.path.join(BASE_DIR, 'static'), #có thể bỏ
+    # os.path.join(BASE_DIR, 'static'), #có thể bỏ
 ]
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'apps/static/images')
-#REST_FRAMEWORK = {
+# REST_FRAMEWORK = {
 #    'DEFAULT_AUTHENTICATION_CLASSES': (
 #        'rest_framework_simplejwt.authentication.JWTAuthentication',
 #    )
-#}
+# }
 
 VNPAY_RETURN_URL = 'http://localhost:8000/payment_return'  # get from config
 VNPAY_PAYMENT_URL = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html'  # get from config
 VNPAY_API_URL = 'https://sandbox.vnpayment.vn/merchant_webapi/api/transaction'
 VNPAY_TMN_CODE = 'F9GSCV1D'  # Website ID in VNPAY System, get from config
 VNPAY_HASH_SECRET_KEY = 'JUXOOOXYAUTGHZIWOZVOLQCICSTVEACX'  # Secret key for create checksum,get from config
-
 
 # NCB: 9704198526191432198, NGUYEN VAN A, 07/15, 123456

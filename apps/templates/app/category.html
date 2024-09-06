@@ -1,7 +1,7 @@
 {% extends 'app/base.html' %}
 {% load static %}
-        {% block category %}
-        <style>
+{% block category %}
+<style>
             .thubnail {
         transition: transform 0.3s ease;
         max-width: 100%;
@@ -12,22 +12,26 @@
     .thubnail:hover {
         transform: scale(1.2);
     }
-        </style>
+
+</style>
 <br/>
-     <h5 class="sua-cho-nguoi-gia" style="color: red; border: 1px;">{{active_category}}</h5>
-        <div class="row" style="width:100%">
-  {% for product in products %}
-      <div class="col-lg-3">
+<h5 class="sua-cho-nguoi-gia" style="color: red; border: 1px;">{{active_category}}</h5>
+<div class="row" style="width:100%">
+    {% for product in products %}
+    <div class="col-lg-3">
         <img class="thubnail" src="{{product.ImageURL}}" height="200">
         <div class="box-element product">
-          <h6><strong>{{product.name}}</strong></h6>
-          <hr>
-          <buttom data-product={{product.id}} data-action ="add" class="btn  btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</buttom>
-          <a class="btn btn-outline-success" href="{% url 'detail' %}?id={{product.id}}">Xem</a>
-          <h4 style="display: inline-block; color:red; font-size: 20px; float: right"><strong>{{product.price}}</strong></h4>
-      </div>
+            <h6><strong>{{product.name}}</strong></h6>
+            <hr>
+            <buttom data-product={{product.id}} data-action="add"
+                    class="btn  btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng
+            </buttom>
+            <a class="btn btn-outline-success" href="{% url 'detail' %}?id={{product.id}}">Xem</a>
+            <h4 style="display: inline-block; color:red; font-size: 20px; float: right">
+                <strong>{{product.price}}</strong></h4>
+        </div>
     </div>
-  {% endfor %}
+    {% endfor %}
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -41,5 +45,6 @@
       elements[i].innerText = text;
     }
   });
+
 </script>
-    {% endblock category %}
+{% endblock category %}

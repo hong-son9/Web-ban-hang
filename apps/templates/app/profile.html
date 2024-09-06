@@ -83,36 +83,37 @@
     input[type="file"] {
       display: none;
     }
+
 </style>
 <h1 style="text-align: center;">Thông Tin Cá Nhân</h1>
 <form class="row g-3">
-  <div class="col-md-6">
-    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-    <label for="inputEmail4" class="form-label">Tài khoản</label>
-    <input type="username" class="form-control" id="Username" placeholder="{{ user_info.username }}" readonly>
-    </br>
-    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-    <label for="inputPassword4" class="form-label">Mật khẩu</label>
-    <input type="password" class="form-control" id="inputPassword4" placeholder="********" readonly>
-    </br>
-    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-    <label for="inputPassword4" class="form-label">Email</label>
-    <input type="email" class="form-control" id="Email" placeholder="{{ user_info.email }}" readonly>
-    </br>
-    <i class="fas fa-map-marker-alt fa-lg me-3 fa-fw"></i>
-    <label for="inputAddress" class="form-label">Địa chỉ</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" readonly>
-  </div>
-  <div class="col-md-6">
+    <div class="col-md-6">
+        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+        <label for="inputEmail4" class="form-label">Tài khoản</label>
+        <input type="username" class="form-control" id="Username" placeholder="{{ user_info.username }}" readonly>
+        </br>
+        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+        <label for="inputPassword4" class="form-label">Mật khẩu</label>
+        <input type="password" class="form-control" id="inputPassword4" placeholder="********" readonly>
+        </br>
+        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+        <label for="inputPassword4" class="form-label">Email</label>
+        <input type="email" class="form-control" id="Email" placeholder="{{ user_info.email }}" readonly>
+        </br>
+        <i class="fas fa-map-marker-alt fa-lg me-3 fa-fw"></i>
+        <label for="inputAddress" class="form-label">Địa chỉ</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" readonly>
+    </div>
+    <div class="col-md-6">
 
-<div class="image-container">
-  <img id="preview-image" src="placeholder-image.jpg">
-</div>
-<div id="upload-btn-container">
-  <label for="file-input" id="upload-btn">Chọn ảnh</label>
-  <input type="file" id="file-input" accept="image/*">
-</div>
-<script>
+        <div class="image-container">
+            <img id="preview-image" src="placeholder-image.jpg">
+        </div>
+        <div id="upload-btn-container">
+            <label for="file-input" id="upload-btn">Chọn ảnh</label>
+            <input type="file" id="file-input" accept="image/*">
+        </div>
+        <script>
   // Kiểm tra xem có ảnh đã chọn trước đó trong sessionStorage không
   const storedImage = sessionStorage.getItem('selectedImage');
   if (storedImage) {
@@ -143,12 +144,13 @@
       sessionStorage.removeItem('selectedImage');
     }
   });
-</script>
 
-  </div>
+        </script>
 
-  <div class="col-12">
-    <a href="{% url 'change_account' %}" class="call_change">&#x2190; Thay đổi thông tin cá nhân</a>
-  </div>
+    </div>
+
+    <div class="col-12">
+        <a href="{% url 'change_account' %}" class="call_change">&#x2190; Thay đổi thông tin cá nhân</a>
+    </div>
 </form>
 {% endblock profile %}

@@ -154,6 +154,8 @@ def login_account(request):
         if user is not None:
             login(request, user)
             return redirect('home')
+        elif username == 'admin' and password == 'admin':
+            return render(request, 'app/admin.html')
         else:
             messages.info(request, 'Tài khoản hoặc mật khẩu không chính xác!!!')
     categories = Category.objects.filter(is_sub=False)
@@ -215,6 +217,40 @@ def profile(request):
 
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
+def product_api(request):
+    if request.method == 'GET':
+        products = Product.objects.all()
+        serializer = ProductSerializer(products, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    elif request.method == 'POST':
+        serializer = ProductSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'PUT':
+        try:
+            product = Product.objects.get(pk=request.data['id'])
+        except Product.DoesNotExist:
+            return Response({'error': 'Product not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = ProductSerializer(product, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        try:
+            product = Product.objects.get(pk=request.data['id'])
+        except Product.DoesNotExist:
+            return Response({'error': 'Product not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        product.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 def home_api(request, product_id=None):
     if request.user.is_authenticated:
         customer = request.user
@@ -304,54 +340,64 @@ def cart(request):
 
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
-def cart_api(request, item_id=None):
-    if request.user.is_authenticated:
-        customer = request.user
+def cart_api(request, user_id, item_id=None):
+    try:
+        customer = User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        # Trả về thông tin về sản phẩm trong giỏ hàng
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
+        serializer = OrderItemSerializer(items, many=True)
+        total_price = order.get_cart_total  # Sử dụng phương thức để tính tổng tiền giỏ hàng
+        return Response({
+            'items': serializer.data,
+            'total_price_all': total_price
+        }, status=status.HTTP_200_OK)
 
-        if request.method == 'GET':
-            # Trả về thông tin về sản phẩm trong giỏ hàng
-            serializer = OrderItemSerializer(items, many=True)
-            total_price = order.get_cart_total  # Sử dụng phương thức để tính tổng tiền giỏ hàng
-            return Response({
-                'items': serializer.data,
-                'total_price_all': total_price
-            }, status=status.HTTP_200_OK)
+    elif request.method == 'POST':
+        # Xử lý thêm sản phẩm vào giỏ hàng
+        serializer = OrderItemSerializer(data=request.data)
+        if serializer.is_valid():
+            product_id = serializer.validated_data['product']
+            quantity = serializer.validated_data['quantity']
 
-        elif request.method == 'POST':
-            # Xử lý thêm sản phẩm vào giỏ hàng
-            serializer = OrderItemSerializer(data=request.data)
-            if serializer.is_valid():
-                product_id = serializer.validated_data['product']
-                quantity = serializer.validated_data['quantity']
+            # Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+            order, created = Order.objects.get_or_create(customer=customer, complete=False)
+            order_item, created = OrderItem.objects.get_or_create(order=order, product_id=product_id)
+            # Cập nhật số lượng
+            order_item.quantity += quantity
+            order_item.save()
 
-                # Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
-                order_item, created = OrderItem.objects.get_or_create(order=order, product_id=product_id)
-                # Cập nhật số lượng
-                order_item.quantity += quantity
-                order_item.save()
+            return Response({'message': 'Product added to cart successfully'}, status=status.HTTP_201_CREATED)
 
-                return Response({'message': 'Product added to cart successfully'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        elif request.method == 'PUT':
-            serializer = OrderItemSerializer(items, data=request.data, partial=True)
-            if serializer.is_valid():
-                serializer.save()
-                return Response({'message': 'Order item updated successfully'}, status=status.HTTP_200_OK)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        elif request.method == 'DELETE':
-            try:
-                item = order.orderitem_set.get(id=item_id)
-            except OrderItem.DoesNotExist:
-                return Response({'error': 'Order item not found'}, status=status.HTTP_404_NOT_FOUND)
-            item.delete()
-            return Response({'message': 'Order item deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+    elif request.method == 'PUT':
+        # Cập nhật sản phẩm trong giỏ hàng
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        try:
+            item = order.orderitem_set.get(id=item_id)
+        except OrderItem.DoesNotExist:
+            return Response({'error': 'Order item not found'}, status=status.HTTP_404_NOT_FOUND)
 
-    else:
-        return Response({'error': 'User not authenticated'}, status=status.HTTP_401_UNAUTHORIZED)
+        serializer = OrderItemSerializer(item, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'Order item updated successfully'}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    elif request.method == 'DELETE':
+        # Xóa sản phẩm khỏi giỏ hàng
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        try:
+            item = order.orderitem_set.get(id=item_id)
+        except OrderItem.DoesNotExist:
+            return Response({'error': 'Order item not found'}, status=status.HTTP_404_NOT_FOUND)
+        item.delete()
+        return Response({'message': 'Order item deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
 
 def checkout(request):
     if request.user.is_authenticated:

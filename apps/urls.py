@@ -26,6 +26,7 @@ urlpatterns = [
     path('category/', views.category, name='category'),
     path('detail/', views.detail, name='detail'),
     path('hotline/', views.hotline, name='hotline'),
+    path('userId_api/', views.userId_api, name='userId_api'),
 
     path('pay', views.index, name='index'),
     path('payment', views.payment, name='payment'),

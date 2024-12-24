@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
 from django.urls import reverse
+from rest_framework.permissions import IsAuthenticated
+
 from .models import *
 import json
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
@@ -14,7 +16,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 from django.urls import reverse
@@ -87,6 +89,13 @@ def register_api(request, user_id=None):
 
     return Response({'error': 'Method Not Allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])  # Đảm bảo chỉ cho phép người dùng đã đăng nhập
+def userId_api(request):
+    if request.method == 'GET':
+        # Lấy thông tin người dùng hiện tại
+        user = request.user
+        return Response({'id': user.id}, status=status.HTTP_200_OK)
 
 def register(request):
     order = {'get_cart_items': 0, 'get_cart_total': 0}

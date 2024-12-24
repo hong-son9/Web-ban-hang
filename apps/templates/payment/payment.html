@@ -18,27 +18,53 @@
             <input class="form-control" id="order_id"
                    name="order_id" type="text" value="{% now 'YmdHis' %}" readonly style="background-color: white;"/>
         </div>
-        <div class="form-group">
-        <label for="amount">Số tiền</label>
-        <input class="form-control" id="amount" name="amount" type="number" value="10000"
-               style="background-color: white;">
-    </div>
+ <div class="form-group">
+    <label for="amount">Số tiền</label>
+    <input class="form-control" id="amount" name="amount" type="number" value="10000"
+           style="background-color: white;">
+</div>
 
-    <!-- JavaScript to fetch and update total price -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('/cart_api/')
-                .then(response => response.json())
-                .then(data => {
-                    const totalPrice = data.total_price_all;
-                    const totalPriceWithMultiplier = totalPrice * 1000;
-                    document.getElementById('amount').value = totalPriceWithMultiplier;
-                })
-                .catch(error => {
-                    console.error('Error fetching cart total:', error);
-                });
-        });
-    </script>
+<!-- JavaScript to fetch and update total price -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gọi API để lấy ID người dùng hiện tại
+        fetch('http://127.0.0.1:8000/userId_api')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Lấy ID người dùng từ API
+                const userId = data.id;
+
+                // Gọi API giỏ hàng với ID người dùng
+                fetch(`/cart_api/${userId}/`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(cartData => {
+                        // Lấy tổng giá từ API giỏ hàng
+                        const totalPrice = cartData.total_price_all;
+
+                        // Nhân tổng giá với 1000 và gán vào input
+                        const totalPriceWithMultiplier = totalPrice * 1000;
+                        document.getElementById('amount').value = totalPriceWithMultiplier;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching cart total:', error);
+                    });
+            })
+            .catch(error => {
+                console.error('Error fetching user ID:', error);
+            });
+    });
+</script>
+
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- Thêm thẻ script này để sử dụng jQuery -->

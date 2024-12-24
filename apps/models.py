@@ -65,7 +65,7 @@ class Product(models.Model):
     detail = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.name if self.name else "Unnamed Product"
 
     @property
     def ImageURL(self):

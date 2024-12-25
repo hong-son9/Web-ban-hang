@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.permissions import IsAuthenticated
 
 from .models import *
@@ -20,7 +21,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 from django.urls import reverse
-from .serializers import OrderItemSerializer, ProductSerializer
+from .serializers import OrderItemSerializer, ProductSerializer, CategorySerializer
 from django.contrib.auth.decorators import login_required
 
 import hashlib
@@ -224,7 +225,7 @@ def profile(request):
 
     return render(request, 'app/profile.html', context)
 
-
+@csrf_exempt
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
 def product_api(request):
     if request.method == 'GET':
@@ -259,31 +260,6 @@ def product_api(request):
 
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-def home_api(request, product_id=None):
-    if request.user.is_authenticated:
-        customer = request.user
-        products = Product.objects.all()
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        if request.method == 'GET':
-            serializer = ProductSerializer(products, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        elif request.method == 'POST':
-            serializer = ProductSerializer(data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-        elif request.method == 'DELETE':
-            try:
-                product = Product.objects.get(id=product_id)
-            except Product.DoesNotExist:
-                return Response({'error': 'Product not found'}, status=status.HTTP_404_NOT_FOUND)
-            product.delete()
-            return Response({'message': 'Product deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
-    return Response({'error': 'User not authenticated'}, status=status.HTTP_401_UNAUTHORIZED)
-
 
 def home(request):
     if request.user.is_authenticated:
@@ -542,8 +518,52 @@ def category(request):
         'active_category': active_category,
     }
     return render(request, 'app/category.html', context)
+@csrf_exempt
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
+def category_api(request, pk=None):
+    if request.method == 'GET':
+        if pk:
+            # Lấy thông tin category theo id
+            try:
+                category = Category.objects.get(pk=pk)
+                serializer = CategorySerializer(category)
+                return Response(serializer.data)
+            except Category.DoesNotExist:
+                return Response({'error': 'Category not found'}, status=status.HTTP_404_NOT_FOUND)
+        else:
+            # Lấy danh sách category
+            categories = Category.objects.filter(is_sub=False)
+            serializer = CategorySerializer(categories, many=True)
+            return Response(serializer.data)
 
+    elif request.method == 'POST':
+        # Tạo một category mới
+        serializer = CategorySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    elif request.method == 'PUT':
+        # Cập nhật thông tin category
+        try:
+            category = Category.objects.get(pk=pk)
+            serializer = CategorySerializer(category, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Category.DoesNotExist:
+            return Response({'error': 'Category not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    elif request.method == 'DELETE':
+        # Xóa một category
+        try:
+            category = Category.objects.get(pk=pk)
+            category.delete()
+            return Response({'message': 'Category deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+        except Category.DoesNotExist:
+            return Response({'error': 'Category not found'}, status=status.HTTP_404_NOT_FOUND)
 def detail(request):
     if request.user.is_authenticated:
         customer = request.user

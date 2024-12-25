@@ -117,9 +117,9 @@
         <h1>S</h1>
         <ul>
             <li data-info="Thông tin trang chủ">Trang chủ</li>
-            <li data-info="Thông tin quản lý danh mục">Quản lý danh mục</li>
+            <li data-info="Thông tin quản lý danh mục" id="manage-categories">Quản lý danh mục</li>
             <li data-info="Thông tin quản lý sản phẩm" id="manage-products">Quản lý sản phẩm</li>
-            <li data-info="Thông tin quản lý đơn hàng" id="manage-cart">Quản lý gio hàng</li>
+<!--            <li data-info="Thông tin quản lý đơn hàng" id="manage-cart">Quản lý gio hàng</li>-->
             <li data-info="Thông tin quản lý tài khoản" id="manage-accounts">Quản lý tài khoản</li>
         </ul>
     </div>
@@ -274,6 +274,111 @@
         }
     });
 });
+document.querySelectorAll('.sidebar li').forEach(item => {
+    item.addEventListener('click', async event => {
+        const infoDisplay = document.getElementById('info-display');
+        const itemId = item.id;
+
+        try {
+            if (itemId === 'manage-products') {
+                // Gọi API để lấy danh sách sản phẩm
+                const response = await fetch('http://127.0.0.1:8000/product_api');
+                const data = await response.json();
+
+                let tableContent = '<h2>Danh sách sản phẩm</h2>';
+                tableContent += `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+                data.forEach(product => {
+                    tableContent += `
+                        <tr>
+                            <td>${product.id}</td>
+                            <td>${product.name}</td>
+                            <td>${product.price.toFixed(2)}</td>
+                        </tr>
+                    `;
+                });
+
+                tableContent += `
+                        </tbody>
+                    </table>
+                `;
+                infoDisplay.innerHTML = tableContent;
+            } else {
+                // Hiển thị thông tin chung
+                const info = item.getAttribute('data-info');
+                infoDisplay.innerHTML = `<p>${info}</p>`;
+            }
+        } catch (error) {
+            infoDisplay.innerHTML = `<p>Không thể tải dữ liệu. Vui lòng thử lại sau.</p>`;
+            console.error('Lỗi:', error);
+        }
+    });
+});
+
+document.querySelectorAll('.sidebar li').forEach(item => {
+    item.addEventListener('click', async event => {
+        const infoDisplay = document.getElementById('info-display');
+        const itemId = item.id;
+
+        try {
+            if (itemId === 'manage-categories') {
+                // Gọi API để lấy danh sách danh mục
+                const response = await fetch('http://127.0.0.1:8000/category_api/');
+                const data = await response.json();
+
+                let tableContent = '<h2>Danh sách danh mục</h2>';
+                tableContent += `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên danh mục</th>
+                                <th>Slug</th>
+                                <th>Danh mục con</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+                // Duyệt qua từng danh mục và tạo hàng trong bảng
+                data.forEach(category => {
+                    tableContent += `
+                        <tr>
+                            <td>${category.id}</td>
+                            <td>${category.name}</td>
+                            <td>${category.slug}</td>
+                            <td>${category.is_sub ? 'Có' : 'Không'}</td>
+                        </tr>
+                    `;
+                });
+
+                tableContent += `
+                        </tbody>
+                    </table>
+                `;
+                infoDisplay.innerHTML = tableContent;
+            } else {
+                // Hiển thị thông tin chung
+                const info = item.getAttribute('data-info');
+                infoDisplay.innerHTML = `<p>${info}</p>`;
+            }
+        } catch (error) {
+            infoDisplay.innerHTML = `<p>Không thể tải dữ liệu danh mục. Vui lòng thử lại sau.</p>`;
+            console.error('Lỗi khi lấy dữ liệu danh mục:', error);
+        }
+    });
+});
+
 
     </script>
 </body>

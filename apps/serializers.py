@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import OrderItem, Product
+from .models import OrderItem, Product, Category
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,3 +16,8 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     def get_total_price(self, obj):
         return obj.get_total
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name', 'slug', 'is_sub']

@@ -112,20 +112,20 @@ class OrderItem(models.Model):
         return self.product.price * self.quantity
 
     def __str__(self):
-        return str(self.product)
+        return str(self.order)
 
 
-class InformationCustomer(models.Model):
-    customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True, blank=True)
-    address = models.CharField(max_length=255, null=True)
-    city = models.CharField(max_length=255, null=True)
-    phone = models.CharField(max_length=255, null=True)
-    state = models.CharField(max_length=255, null=True)
-    date_added = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.address
+# class InformationCustomer(models.Model):
+#     customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+#     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True, blank=True)
+#     address = models.CharField(max_length=255, null=True)
+#     city = models.CharField(max_length=255, null=True)
+#     phone = models.CharField(max_length=255, null=True)
+#     state = models.CharField(max_length=255, null=True)
+#     date_added = models.DateTimeField(auto_now_add=True)
+#
+#     def __str__(self):
+#         return self.address
 
 
 class Payment_VNPay(models.Model):
